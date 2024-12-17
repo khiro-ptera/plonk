@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://wkodf4v7lfy8"]
+
+[ext_resource type="Script" path="res://scenes/setup.gd" id="1_i7nya"]
+[ext_resource type="Script" path="res://scenes/plonksLabel.gd" id="2_s05m3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7fcpc"]
+font_size = 64
+font_color = Color(3.36915e-07, 0.434287, 0.406051, 1)
+
+[node name="Playground" type="Node2D"]
+script = ExtResource("1_i7nya")
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_7fcpc")
+script = ExtResource("2_s05m3")
