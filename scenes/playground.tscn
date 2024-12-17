@@ -8,12 +8,57 @@ font_size = 64
 font_color = Color(3.36915e-07, 0.434287, 0.406051, 1)
 
 [node name="Playground" type="Node2D"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TopMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="LeftMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="ObjBox" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+
+[node name="Objects" type="Node2D" parent="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox"]
+position = Vector2(-19, 0)
 script = ExtResource("1_i7nya")
 
-[node name="Objects" type="Node2D" parent="."]
+[node name="MiddleMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
 label_settings = SubResource("LabelSettings_7fcpc")
 script = ExtResource("2_s05m3")
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RightMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="BotMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
