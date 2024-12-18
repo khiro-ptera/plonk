@@ -2,6 +2,7 @@ extends Node2D
 
 var ball = preload("res://scenes/ball.tscn")
 var block = preload("res://scenes/block.tscn")
+signal event
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,11 +45,17 @@ func genBox(w, h, startpos = Vector2(0, 0)) -> void:
 	instance.position.x = w * 100 * instance.scaler
 	instance.position += startpos
 
-func spawnBall(x = randi_range(100, 200), y = randi_range(100, 200), vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void:
+func spawnBall(type = 0, pos = Vector2(randi_range(100, 200), randi_range(100, 200)), 
+vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, position, velocity
 	var instance = ball.instantiate()
 	add_child(instance)
-	instance.position = Vector2(x, y)
+	instance.type = type
+	instance.position = pos
 	instance.linear_velocity = vel
+	if type == 1:
+		instance.scaler = 0.5
+	elif type == 2:
+		instance.scaler = 0.4
 
 func addBlock(pos) -> void:
 	var instance = block.instantiate()
@@ -60,3 +67,16 @@ func _on_add_ball_pressed() -> void:
 		Global.plonks -= Global.ballCost
 		Global.ballCost *= 3
 		spawnBall()
+
+func _on_add_ball_2_pressed() -> void:
+	if Global.plonks >= Global.bigBallCost:
+		Global.plonks -= Global.bigBallCost
+		Global.bigBallCost *= 10
+		spawnBall(1)
+
+
+func _on_add_ball_3_pressed() -> void:
+	if Global.plonks >= Global.starCost:
+		Global.plonks -= Global.starCost
+		Global.starCost *= 5
+		spawnBall(2)
