@@ -6,7 +6,7 @@ var eventcd = 60.0 # initialize for earlist first event, lower for testing purpo
 
 const maxEventcd = 60.0
 
-var eventChance = 5000 # 1/eventChance is actual chance of event after max cd is over
+var eventChance = 50000 # 1000delta/eventChance is actual chance of event after max cd is over
 
 signal event(e)
 
@@ -20,21 +20,19 @@ func _process(delta: float) -> void:
 	if eventcd > 0.0:
 		eventcd -= delta
 	else:
-		if randi_range(1, eventChance) == 1: # chance per frame for an event after cd (maybe change to time)
+		if randi_range(1, eventChance) < int(delta * 1000): # chance per frame for an event after cd
 			var rtemp = randi_range(1, 2)
 			if rtemp == 1:
-				event.emit(1) # not working for some reason? (bug1)
-				Global.event = 1 # bug1 temp workaround
+				event.emit(1) 
 				print("hi")
 				for i in 10:
 					var instance = block.instantiate()
 					add_child(instance)
-					instance.position = Vector2(randi_range(80, 660), randi_range(80, 500))
+					instance.position = Vector2(randi_range(100, 640), randi_range(100, 480))
 					instance.timed = Global.eventTime
 				eventcd = maxEventcd
 			elif rtemp == 2:
-				event.emit(2) # bug1
-				Global.event = 2 # bug1 temp workaround
+				event.emit(2) 
 				plonkMult(2, Global.eventTime)
 				eventcd = maxEventcd
 			elif rtemp == 3:
@@ -94,6 +92,9 @@ vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, posi
 	elif type == 2:
 		instance.scaler = 0.4
 		instance.angular_velocity = 0.5
+	elif type == 3:
+		instance.linear_velocity = Vector2(0, 0)
+		instance.position.y = 100
 
 func addBlock(pos) -> void:
 	var instance = block.instantiate()
@@ -117,3 +118,9 @@ func _on_add_ball_3_pressed() -> void:
 		Global.plonks -= Global.starCost
 		Global.starCost *= 5
 		spawnBall(2)
+
+func _on_add_ball_4_pressed() -> void:
+	if Global.plonks >= Global.gravCost:
+		Global.plonks -= Global.gravCost
+		Global.gravCost *= 7
+		spawnBall(3)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://crdygc5xl36pf"]
+[gd_scene load_steps=46 format=3 uid="uid://crdygc5xl36pf"]
 
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="1_0kl4m"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_s3pyh"]
@@ -32,6 +32,16 @@
 [ext_resource type="Texture2D" uid="uid://l5re1gf3haex" path="res://assets/face10.png" id="30_0mbe2"]
 [ext_resource type="Texture2D" uid="uid://b2eeiem14jixg" path="res://assets/face10a.png" id="31_gt722"]
 [ext_resource type="Texture2D" uid="uid://bw2sq0le7xs2r" path="res://assets/face10b.png" id="32_srm4c"]
+[ext_resource type="Texture2D" uid="uid://dljhn1spmnsmb" path="res://assets/face15.png" id="33_waakg"]
+[ext_resource type="Texture2D" uid="uid://b6aqyyk67bp3m" path="res://assets/face17.png" id="33_xqc8e"]
+[ext_resource type="Texture2D" uid="uid://b765vdjy6ykq3" path="res://assets/face15a.png" id="34_mv3bp"]
+[ext_resource type="Texture2D" uid="uid://seds45in6isy" path="res://assets/face17a.png" id="34_yc2qv"]
+[ext_resource type="Texture2D" uid="uid://dedybpfpyw1ec" path="res://assets/face17b.png" id="35_gsbc0"]
+[ext_resource type="Texture2D" uid="uid://clfhv48cq1rg7" path="res://assets/face15b.png" id="35_llcw7"]
+[ext_resource type="Texture2D" uid="uid://bth0elm3ls6i7" path="res://assets/face16.png" id="36_yq3aq"]
+[ext_resource type="Texture2D" uid="uid://dncf4iuxcvkm6" path="res://assets/face18.png" id="40_5jalx"]
+[ext_resource type="Texture2D" uid="uid://bbnwvvq0bsrp4" path="res://assets/face18a.png" id="41_hc8yb"]
+[ext_resource type="Texture2D" uid="uid://qd3l88f8n2br" path="res://assets/face18b.png" id="42_unpc2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mtvmg"]
 friction = 0.0
@@ -54,7 +64,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"0_fast",
-"speed": 3.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -76,7 +86,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"0_mid",
-"speed": 2.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -90,7 +100,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"0_slow",
-"speed": 1.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -101,7 +111,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"1_fast",
-"speed": 3.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -123,7 +133,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"1_mid",
-"speed": 2.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -137,7 +147,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"1_slow",
-"speed": 1.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -151,7 +161,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"2_fast",
-"speed": 3.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -173,7 +183,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"2_mid",
-"speed": 2.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -187,7 +197,57 @@ animations = [{
 }],
 "loop": true,
 "name": &"2_slow",
-"speed": 1.0
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_xqc8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_yc2qv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_gsbc0")
+}],
+"loop": true,
+"name": &"3_fast",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_yq3aq")
+}],
+"loop": true,
+"name": &"3_hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_waakg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_mv3bp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_llcw7")
+}],
+"loop": true,
+"name": &"3_mid",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("40_5jalx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_hc8yb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_unpc2")
+}],
+"loop": true,
+"name": &"3_slow",
+"speed": 2.0
 }]
 
 [node name="Ball" type="RigidBody2D"]
@@ -215,6 +275,6 @@ disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i4oj2")
-animation = &"2_slow"
+animation = &"3_slow"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

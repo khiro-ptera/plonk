@@ -4,6 +4,7 @@ extends RigidBody2D
 @onready var oscale = Vector2(1, 1)
 @onready var type = 0
 var hitframes = 0
+var cd = INF
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,12 +22,16 @@ func _physics_process(delta: float) -> void:
 		$StarSprite.show()
 		$CollisionPolygonStar.disabled = false
 		$CollisionShapeBall.disabled = true
-		# angular_velocity += 0.05 / (angular_velocity + 0.0001)
+		angular_velocity *= 1 + (0.01 / abs(angular_velocity))
+		$AnimatedSprite2D.rotate(-1 * angular_velocity / 90)
 	else:
 		$BallSprite.show()
 		$StarSprite.hide()
 		$CollisionPolygonStar.disabled = true
 		$CollisionShapeBall.disabled = false
+		
+		if type == 3:
+			constant_force.y = 0.1
 		#pass
 	
 	$CollisionShapeBall.scale = scale

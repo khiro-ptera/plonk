@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wkodf4v7lfy8"]
+[gd_scene load_steps=14 format=3 uid="uid://wkodf4v7lfy8"]
 
 [ext_resource type="Script" path="res://scenes/setup.gd" id="1_i7nya"]
 [ext_resource type="Script" path="res://scenes/scalcescreen.gd" id="1_mf50h"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/add_ball.gd" id="6_gxb3l"]
 [ext_resource type="Script" path="res://scenes/add_ball_2.gd" id="7_ccwr8"]
 [ext_resource type="Script" path="res://scenes/add_ball_3.gd" id="8_ibjh8"]
+[ext_resource type="Script" path="res://scenes/add_ball_4.gd" id="10_i6jac"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nfiy4"]
 font_size = 32
@@ -158,6 +159,25 @@ label_settings = SubResource("LabelSettings_t6l4c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="AddBall4" type="TextureButton" parent="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_p3gc2")
+texture_pressed = ExtResource("5_dj83m")
+stretch_mode = 3
+script = ExtResource("10_i6jac")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/AddBall4"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 50.0
+label_settings = SubResource("LabelSettings_t6l4c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="RightMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
@@ -166,7 +186,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[connection signal="event" from="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="MarginContainer/VBoxContainer2/TopBar/Event" method="_on_objects_event" binds= [0]]
+[connection signal="event" from="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="MarginContainer/VBoxContainer2/TopBar/Event" method="_on_objects_event"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/AddBall" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/AddBall2" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/AddBall3" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_3_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/AddBall4" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_4_pressed"]

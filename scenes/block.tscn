@@ -1,12 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqp84nkfukqua"]
+[gd_scene load_steps=10 format=3 uid="uid://dqp84nkfukqua"]
 
 [ext_resource type="Texture2D" uid="uid://bd0ejxncky7rf" path="res://assets/block1.png" id="1_0xkh5"]
 [ext_resource type="Script" path="res://scenes/block.gd" id="1_y5i66"]
+[ext_resource type="Texture2D" uid="uid://brgipfkvam8l" path="res://assets/face13.png" id="3_oq3cd"]
+[ext_resource type="Texture2D" uid="uid://sc03jn4bsaha" path="res://assets/face13a.png" id="4_artqo"]
+[ext_resource type="Texture2D" uid="uid://qdcgjgb1x3yn" path="res://assets/face13b.png" id="5_1sre5"]
+[ext_resource type="Texture2D" uid="uid://cl8afu7na86xl" path="res://assets/face14.png" id="6_5xrl4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ba75p"]
+friction = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y6dl3"]
 size = Vector2(100, 100)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_m1v64"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_oq3cd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_artqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1sre5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_5xrl4")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}]
+
 [node name="Block" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_ba75p")
 script = ExtResource("1_y5i66")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -14,3 +47,7 @@ texture = ExtResource("1_0xkh5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y6dl3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m1v64")
+animation = &"hit"
