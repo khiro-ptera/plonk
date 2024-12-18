@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://crdygc5xl36pf"]
+[gd_scene load_steps=10 format=3 uid="uid://crdygc5xl36pf"]
 
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="1_0kl4m"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_s3pyh"]
+[ext_resource type="Texture2D" uid="uid://dtbxnxkhsmii1" path="res://assets/face1.png" id="3_07oui"]
+[ext_resource type="Texture2D" uid="uid://b4k3cmdt4llkw" path="res://assets/face1a.png" id="4_ab5bp"]
+[ext_resource type="Texture2D" uid="uid://biy8rd4ho2ah7" path="res://assets/face1b.png" id="5_27acb"]
+[ext_resource type="Texture2D" uid="uid://blm1ntfbk7u41" path="res://assets/face2.png" id="6_76u47"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mtvmg"]
 friction = 0.0
@@ -9,6 +13,31 @@ bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_my1uc"]
 radius = 50.01
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i4oj2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_07oui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ab5bp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_27acb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_76u47")
+}],
+"loop": true,
+"name": &"hit_block",
+"speed": 5.0
+}]
 
 [node name="Ball" type="RigidBody2D"]
 mass = 0.001
@@ -23,5 +52,9 @@ texture = ExtResource("1_0kl4m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_my1uc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_i4oj2")
+animation = &"hit_block"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

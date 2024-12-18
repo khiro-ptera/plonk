@@ -6,8 +6,7 @@ var block = preload("res://scenes/block.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	genBox(32, 24, Vector2(50, 50))
-	spawnBall(100, 100)
-	spawnBall(250, 150, Vector2(150, -150))
+	spawnBall()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -45,9 +44,19 @@ func genBox(w, h, startpos = Vector2(0, 0)) -> void:
 	instance.position.x = w * 100 * instance.scaler
 	instance.position += startpos
 
-func spawnBall(x, y, vel = Vector2(100, 100)) -> void:
+func spawnBall(x = randi_range(100, 200), y = randi_range(100, 200), vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void:
 	var instance = ball.instantiate()
 	add_child(instance)
 	instance.position = Vector2(x, y)
 	instance.linear_velocity = vel
-	
+
+func addBlock(pos) -> void:
+	var instance = block.instantiate()
+	add_child(instance)
+	instance.position = pos
+
+func _on_add_ball_pressed() -> void:
+	if Global.plonks >= Global.ballCost:
+		Global.plonks -= Global.ballCost
+		Global.ballCost *= 3
+		spawnBall()
