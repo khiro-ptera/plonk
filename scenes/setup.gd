@@ -2,7 +2,13 @@ extends Node2D
 
 var ball = preload("res://scenes/ball.tscn")
 var block = preload("res://scenes/block.tscn")
-signal event
+var eventcd = 60.0 # initialize for earlist first event, lower for testing purposes
+
+const maxEventcd = 60.0
+
+var eventChance = 5000 # 1/eventChance is actual chance of event after max cd is over
+
+signal event(e)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,7 +17,32 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if eventcd > 0.0:
+		eventcd -= delta
+	else:
+		if randi_range(1, eventChance) == 1: # chance per frame for an event after cd (maybe change to time)
+			var rtemp = randi_range(1, 2)
+			if rtemp == 1:
+				event.emit(1) # not working for some reason? (bug1)
+				Global.event = 1 # bug1 temp workaround
+				print("hi")
+				for i in 10:
+					var instance = block.instantiate()
+					add_child(instance)
+					instance.position = Vector2(randi_range(80, 660), randi_range(80, 500))
+					instance.timed = Global.eventTime
+				eventcd = maxEventcd
+			elif rtemp == 2:
+				event.emit(2) # bug1
+				Global.event = 2 # bug1 temp workaround
+				plonkMult(2, Global.eventTime)
+				eventcd = maxEventcd
+			elif rtemp == 3:
+				pass
+			elif rtemp == 4:
+				pass
+			elif rtemp == 5:
+				pass
 
 func genBox(w, h, startpos = Vector2(0, 0)) -> void:
 	for i in h:
@@ -45,7 +76,13 @@ func genBox(w, h, startpos = Vector2(0, 0)) -> void:
 	instance.position.x = w * 100 * instance.scaler
 	instance.position += startpos
 
-func spawnBall(type = 0, pos = Vector2(randi_range(100, 200), randi_range(100, 200)), 
+func plonkMult(mult, time) -> void: 
+	print("mult by " + str(mult))
+	Global.plonkMult *= mult
+	await get_tree().create_timer(time).timeout
+	Global.plonkMult /= mult
+
+func spawnBall(type = 0, pos = Vector2(randi_range(80, 660), randi_range(80, 500)), 
 vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, position, velocity
 	var instance = ball.instantiate()
 	add_child(instance)
@@ -56,6 +93,7 @@ vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, posi
 		instance.scaler = 0.5
 	elif type == 2:
 		instance.scaler = 0.4
+		instance.angular_velocity = 0.5
 
 func addBlock(pos) -> void:
 	var instance = block.instantiate()
@@ -73,7 +111,6 @@ func _on_add_ball_2_pressed() -> void:
 		Global.plonks -= Global.bigBallCost
 		Global.bigBallCost *= 10
 		spawnBall(1)
-
 
 func _on_add_ball_3_pressed() -> void:
 	if Global.plonks >= Global.starCost:

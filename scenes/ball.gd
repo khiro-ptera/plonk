@@ -41,6 +41,6 @@ func _physics_process(delta: float) -> void:
 	hitframes -= 1
 
 func _on_body_entered(body: Node) -> void:
-	Global.plonks += 1
+	Global.plonks += Global.plonkGain * Global.plonkMult
 	hitframes = 15
 	$AnimatedSprite2D.play(str(type) + "_hit")

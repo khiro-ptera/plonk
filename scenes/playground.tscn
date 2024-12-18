@@ -166,7 +166,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[connection signal="event" from="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="MarginContainer/VBoxContainer2/TopBar/Event" method="_on_objects_event"]
+[connection signal="event" from="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="MarginContainer/VBoxContainer2/TopBar/Event" method="_on_objects_event" binds= [0]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/AddBall" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/AddBall2" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/AddBall3" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_3_pressed"]
