@@ -5,6 +5,7 @@ extends RigidBody2D
 @onready var type = 0
 var hitframes = 0
 var cd = INF
+var timed = INF
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +17,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	scale = oscale * scaler
+	
+	$CollisionShapeBall.scale = scale
+	$CollisionPolygonStar.scale = scale
 	
 	if type == 2:
 		$BallSprite.hide()
@@ -32,10 +36,11 @@ func _physics_process(delta: float) -> void:
 		
 		if type == 3:
 			constant_force.y = 0.1
-		#pass
-	
-	$CollisionShapeBall.scale = scale
-	$CollisionPolygonStar.scale = scale
+		elif type == 4:
+			timed -= delta
+			if timed <= 0.0:
+				queue_free()
+		
 	if hitframes == 0:
 		if abs(linear_velocity.x) + abs(linear_velocity.y) > 250:
 			$AnimatedSprite2D.play(str(type) + "_fast")
@@ -46,6 +51,9 @@ func _physics_process(delta: float) -> void:
 	hitframes -= 1
 
 func _on_body_entered(body: Node) -> void:
+	if type == 4:
+		queue_free()
+		return
 	Global.plonks += Global.plonkGain * Global.plonkMult
 	hitframes = 15
 	$AnimatedSprite2D.play(str(type) + "_hit")

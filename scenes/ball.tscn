@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://crdygc5xl36pf"]
+[gd_scene load_steps=47 format=3 uid="uid://crdygc5xl36pf"]
 
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="1_0kl4m"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_s3pyh"]
@@ -42,6 +42,7 @@
 [ext_resource type="Texture2D" uid="uid://dncf4iuxcvkm6" path="res://assets/face18.png" id="40_5jalx"]
 [ext_resource type="Texture2D" uid="uid://bbnwvvq0bsrp4" path="res://assets/face18a.png" id="41_hc8yb"]
 [ext_resource type="Texture2D" uid="uid://qd3l88f8n2br" path="res://assets/face18b.png" id="42_unpc2"]
+[ext_resource type="Texture2D" uid="uid://xng1qhk6fos3" path="res://assets/face19.png" id="43_twn3w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mtvmg"]
 friction = 0.0
@@ -248,6 +249,14 @@ animations = [{
 "loop": true,
 "name": &"3_slow",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("43_twn3w")
+}],
+"loop": true,
+"name": &"4_fast",
+"speed": 5.0
 }]
 
 [node name="Ball" type="RigidBody2D"]
@@ -275,6 +284,6 @@ disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i4oj2")
-animation = &"3_slow"
+animation = &"4_fast"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

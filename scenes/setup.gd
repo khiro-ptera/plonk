@@ -9,6 +9,7 @@ const maxEventcd = 60.0
 var eventChance = 50000 # 1000delta/eventChance is actual chance of event after max cd is over
 
 signal event(e)
+signal addBall(b)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,7 +22,7 @@ func _process(delta: float) -> void:
 		eventcd -= delta
 	else:
 		if randi_range(1, eventChance) < int(delta * 1000): # chance per frame for an event after cd
-			var rtemp = randi_range(1, 2)
+			var rtemp = randi_range(1, 3)
 			if rtemp == 1:
 				event.emit(1) 
 				print("hi")
@@ -36,7 +37,9 @@ func _process(delta: float) -> void:
 				plonkMult(2, Global.eventTime)
 				eventcd = maxEventcd
 			elif rtemp == 3:
-				pass
+				event.emit(3)
+				meteorRain()
+				eventcd = maxEventcd
 			elif rtemp == 4:
 				pass
 			elif rtemp == 5:
@@ -80,11 +83,17 @@ func plonkMult(mult, time) -> void:
 	await get_tree().create_timer(time).timeout
 	Global.plonkMult /= mult
 
+func meteorRain() -> void:
+	for i in randi_range(int(Global.eventTime * 2), int(Global.eventTime * 2) + 10):
+		spawnBall(4, Vector2(randi_range(100, 640), 100), Vector2(randi_range(-50, 50), randi_range(275, 375)))
+		await get_tree().create_timer(0.5).timeout
+
 func spawnBall(type = 0, pos = Vector2(randi_range(80, 660), randi_range(80, 500)), 
 vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, position, velocity
 	var instance = ball.instantiate()
 	add_child(instance)
 	instance.type = type
+	addBall.emit(type)
 	instance.position = pos
 	instance.linear_velocity = vel
 	if type == 1:
@@ -95,6 +104,9 @@ vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, posi
 	elif type == 3:
 		instance.linear_velocity = Vector2(0, 0)
 		instance.position.y = 100
+	elif type == 4:
+		instance.timed = 5.0
+		instance.scaler = 0.18
 
 func addBlock(pos) -> void:
 	var instance = block.instantiate()
@@ -124,3 +136,10 @@ func _on_add_ball_4_pressed() -> void:
 		Global.plonks -= Global.gravCost
 		Global.gravCost *= 7
 		spawnBall(3)
+
+func _on_prestige_pressed() -> void:
+	var boons = int(Global.plonks / 10000)
+	Global.plonks = 0
+	Global.prestige += 1
+	Global.boons += boons
+	get_tree().reload_current_scene()

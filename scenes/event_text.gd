@@ -22,8 +22,12 @@ func _on_objects_event(event) -> void:
 	if event == 1:
 		timer = Global.eventTime
 		print("hh")
-		text = "Block Invasion!!"
+		text = "Block Invasion!"
 	elif event == 2:
 		timer = Global.eventTime
 		print("hh1")
 		text = "Double Plonks!!"
+	elif event == 3:
+		timer = Global.eventTime
+		print("hh1")
+		text = "Meteor Storm!!!"
