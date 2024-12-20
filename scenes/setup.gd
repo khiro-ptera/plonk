@@ -18,6 +18,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	Global.totalLV = 0
+	Global.totalAV = 0
+	for _i in self.get_children():
+		if _i is RigidBody2D:
+			Global.totalLV += abs(_i.linear_velocity.x) + abs(_i.linear_velocity.y)
+			Global.totalAV += abs(_i.angular_velocity)
+	
 	if eventcd > 0.0:
 		eventcd -= delta
 	else:

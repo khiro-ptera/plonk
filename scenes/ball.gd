@@ -55,5 +55,6 @@ func _on_body_entered(body: Node) -> void:
 		queue_free()
 		return
 	Global.plonks += Global.plonkGain * Global.plonkMult
+	Global.totalCollisions += 1
 	hitframes = 15
 	$AnimatedSprite2D.play(str(type) + "_hit")

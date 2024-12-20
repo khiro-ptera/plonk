@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://wkodf4v7lfy8"]
+[gd_scene load_steps=22 format=3 uid="uid://wkodf4v7lfy8"]
 
 [ext_resource type="Script" path="res://scenes/setup.gd" id="1_i7nya"]
 [ext_resource type="Script" path="res://scenes/scalcescreen.gd" id="1_mf50h"]
 [ext_resource type="Script" path="res://scenes/plonksLabel.gd" id="2_s05m3"]
 [ext_resource type="Script" path="res://scenes/event_text.gd" id="2_vhu3w"]
+[ext_resource type="Texture2D" uid="uid://btoc5hc8b87od" path="res://assets/button4.png" id="3_v3vwa"]
 [ext_resource type="Texture2D" uid="uid://bvd5kfcaoisjc" path="res://assets/button1.png" id="4_p3gc2"]
 [ext_resource type="Texture2D" uid="uid://c7ikypel5j8e8" path="res://assets/button2.png" id="5_dj83m"]
 [ext_resource type="Script" path="res://scenes/add_ball.gd" id="6_gxb3l"]
@@ -19,6 +20,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_nfiy4"]
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_lhmom"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7fcpc"]
 font_size = 64
@@ -66,9 +69,28 @@ layout_mode = 2
 [node name="Event" type="Label" parent="MarginContainer/VBoxContainer2/TopBar"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+size_flags_horizontal = 3
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_vhu3w")
+
+[node name="MiddleMargin2" type="MarginContainer" parent="MarginContainer/VBoxContainer2/TopBar"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="StatsButton" type="TextureButton" parent="MarginContainer/VBoxContainer2/TopBar"]
+layout_mode = 2
+texture_normal = ExtResource("3_v3vwa")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/TopBar/StatsButton"]
+custom_minimum_size = Vector2(50, 48)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Stats"
+label_settings = SubResource("LabelSettings_lhmom")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RightMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer2/TopBar"]
 custom_minimum_size = Vector2(15, 0)
@@ -275,6 +297,24 @@ label_settings = ExtResource("14_r7ti2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TotalC" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
+layout_mode = 2
+label_settings = ExtResource("14_r7ti2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalLV" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
+layout_mode = 2
+label_settings = ExtResource("14_r7ti2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalAV" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
+layout_mode = 2
+label_settings = ExtResource("14_r7ti2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer2" type="MarginContainer" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -290,6 +330,7 @@ size_flags_vertical = 3
 texture_normal = ExtResource("16_fit7a")
 stretch_mode = 0
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/TopBar/StatsButton" to="StatsLayer/StatsMenu" method="_on_stats_button_pressed"]
 [connection signal="addBall" from="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="StatsLayer/StatsMenu" method="_on_objects_add_ball"]
 [connection signal="event" from="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="MarginContainer/VBoxContainer2/TopBar/Event" method="_on_objects_event"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/VBoxContainer/AddBall" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_pressed"]
