@@ -4,6 +4,11 @@ extends Node
 var plonks = 0
 var boons = 0
 
+# acheivements
+var bbUnlock = false
+var starUnlock = false
+var gravUnlock = false
+
 # costs
 var ballCost = 1
 var bigBallCost = 3
@@ -29,6 +34,9 @@ var smallwalls = false
 var bigballs = false
 var doubleplonkchance = false
 var plonkyunlock = false
+
+# other/control
+var landName = "Plonkland"
 
 func resetPrices() -> void:
 	var ballCost = 1

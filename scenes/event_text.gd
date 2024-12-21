@@ -11,7 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	if timer <= 0.0:
-		text = "A Normal Day in Plonkworld"
+		text = "A Normal Day in " + Global.landName
 	else:
 		timer -= delta
 		# print(timer)

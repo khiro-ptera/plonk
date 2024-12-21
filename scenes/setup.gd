@@ -2,7 +2,7 @@ extends Node2D
 
 var ball = preload("res://scenes/ball.tscn")
 var block = preload("res://scenes/block.tscn")
-var eventcd = 60.0 # initialize for earlist first event, lower for testing purposes
+var eventcd = 90.0 # initialize for earlist first event, lower for testing purposes
 
 const maxEventcd = 60.0
 
@@ -14,7 +14,7 @@ signal addBall(b)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	genBox(32, 24, Vector2(50, 50))
-	spawnBall()
+	Global.plonks += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

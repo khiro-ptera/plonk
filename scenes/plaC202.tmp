@@ -136,7 +136,6 @@ layout_mode = 2
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
-texture_disabled = ExtResource("11_ylka4")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall"]
@@ -155,7 +154,6 @@ layout_mode = 2
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
-texture_disabled = ExtResource("11_ylka4")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall2"]
@@ -174,7 +172,6 @@ layout_mode = 2
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
-texture_disabled = ExtResource("11_ylka4")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall3"]
@@ -193,7 +190,6 @@ layout_mode = 2
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
-texture_disabled = ExtResource("11_ylka4")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall4"]
