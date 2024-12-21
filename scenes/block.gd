@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@onready var scaler = 0.2
+@onready var scaler = 0.201
 var timed = INF
 var hitframes = 0
 

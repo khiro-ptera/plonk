@@ -1,6 +1,6 @@
 extends MarginContainer
 
-var ballCounts = [0, 0, 0, 0]
+var ballCounts = [0, 0, 0, 0, 0]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,10 +26,8 @@ func updateCounts() -> void:
 	$HBoxContainer/Menu/Ball2.text = "Stars " + str(ballCounts[2])
 	$HBoxContainer/Menu/Ball3.text = "Grav Balls " + str(ballCounts[3])
 
-
 func _on_texture_button_pressed() -> void:
 	get_parent().visible = false
-
 
 func _on_stats_button_pressed() -> void:
 	get_parent().visible = true
