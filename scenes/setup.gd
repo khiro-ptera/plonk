@@ -15,7 +15,6 @@ signal addBall(b)
 func _ready() -> void:
 	genBox(32, 24, Vector2(50, 50))
 	Global.plonks += 1
-	spawnBall(5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
