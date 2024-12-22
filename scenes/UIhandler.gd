@@ -18,7 +18,7 @@ func _ready() -> void:
 		$VBoxContainer2/HBoxContainer/ShopBox/AddBall4.disabled = true
 		$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = true
 	elif Global.prestige == 1:
-		loadDialogue("Heya, I see u've prestiged! Gratz!", 100)
+		loadDialogue("Heya, I c uve prestiged! Gratz!", 100)
 	else: 
 		loadDialogue("", -1)
 
@@ -88,6 +88,7 @@ func _process(delta: float) -> void:
 		$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon.disabled = true
 	else:
 		$VBoxContainer2/HBoxContainer/BoonBox/Label.text = "Boons"
+		$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon/Label.text = str(Global.boons)
 		$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon.visible = true
 		if Global.boons == 0:
 			$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon.disabled = true
@@ -114,6 +115,9 @@ func loadDialogue(d: String, next: int, face: int = 0) -> void:
 	dialogue = next
 	$DialogueBox.disabled = false
 	inDialogue = false
+
+func _on_draw_boon_pressed() -> void:
+	pass # Replace with function body.
 
 func _on_dialogue_box_pressed() -> void:
 	match dialogue:
@@ -145,6 +149,7 @@ func _on_dialogue_box_pressed() -> void:
 			loadDialogue("Yes? OK, itz settled then! I will leave Plonkland in ur capable hands!", 10, 3)
 		10: 
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall.disabled = false
+			Global.plonks += 1
 			loadDialogue("Start off by buying a plonkus with the 1 plonk ive graciously provided u.", 11)
 		11: 
 			loadDialogue("Now watch as ur plonks go up whenever your plonkus plonks!", 12)
@@ -156,3 +161,15 @@ func _on_dialogue_box_pressed() -> void:
 		25:
 			loadDialogue("Gronki r alwaysz being weighed down. 
 			Itz called gravy tee or something, idk.", -2)
+		
+		
+		100:
+			loadDialogue("That meanz i will b taking that land back.", 101)
+		101:
+			loadDialogue("But wait dont b upset!", -102, 2)
+		102:
+			loadDialogue("Ill give u a new plot, and a boon token 4 every 10000 plonks u had!", 103, 3)
+		103:
+			loadDialogue("U can use tokenz to draw permanent boon cards to help u on ur next land!", 104)
+		104:
+			loadDialogue("Okie, glhf! Im outta here!", -2, 3)

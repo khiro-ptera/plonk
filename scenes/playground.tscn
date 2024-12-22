@@ -1,6 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://wkodf4v7lfy8"]
+[gd_scene load_steps=38 format=3 uid="uid://wkodf4v7lfy8"]
 
 [ext_resource type="Script" path="res://scenes/setup.gd" id="1_i7nya"]
+[ext_resource type="Script" path="res://scenes/background.gd" id="1_jgpkw"]
+[ext_resource type="Texture2D" uid="uid://b5prvvytmyxna" path="res://assets/Background2.png" id="1_jimhf"]
 [ext_resource type="Script" path="res://scenes/UIhandler.gd" id="1_mf50h"]
 [ext_resource type="Script" path="res://scenes/event_text.gd" id="2_vhu3w"]
 [ext_resource type="Texture2D" uid="uid://btoc5hc8b87od" path="res://assets/button4.png" id="3_v3vwa"]
@@ -30,6 +32,12 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_nfiy4"]
 font_size = 32
+font_color = Color(0.823775, 0.195352, 0.283227, 1)
+outline_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_2wwh3"]
+font_color = Color(0.584639, 0.196696, 0.0960094, 1)
+outline_size = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_lhmom"]
 
@@ -40,6 +48,9 @@ font_color = Color(3.36915e-07, 0.434287, 0.406051, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_t6l4c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kvn6i"]
+font_color = Color(0, 0.861297, 0.0136738, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ks15b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_otspk"]
 animations = [{
@@ -102,6 +113,15 @@ animations = [{
 
 [node name="Playground" type="Node2D"]
 
+[node name="BG" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_jimhf")
+expand_mode = 1
+script = ExtResource("1_jgpkw")
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(1152, 648)
 offset_right = 1161.0
@@ -141,6 +161,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_2wwh3")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_vhu3w")
@@ -335,6 +356,12 @@ texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
 texture_disabled = ExtResource("11_ylka4")
 
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer/BoonBox/DrawBoon"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_ks15b")
+
 [node name="RightMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
@@ -363,7 +390,7 @@ centered = false
 
 [node name="DialogueChar" type="AnimatedSprite2D" parent="MarginContainer/DialogueBox/Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_otspk")
-animation = &"0"
+animation = &"3"
 centered = false
 
 [node name="StatsLayer" type="CanvasLayer" parent="."]
@@ -471,5 +498,6 @@ stretch_mode = 0
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall4" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_4_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall5" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_5_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/Prestige" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_prestige_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/BoonBox/DrawBoon" to="MarginContainer" method="_on_draw_boon_pressed"]
 [connection signal="pressed" from="MarginContainer/DialogueBox" to="MarginContainer" method="_on_dialogue_box_pressed"]
 [connection signal="pressed" from="StatsLayer/StatsMenu/TextureButton" to="StatsLayer/StatsMenu" method="_on_texture_button_pressed"]

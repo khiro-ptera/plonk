@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		elif type == 5:
 			if randi_range(1, 10000) < int(delta * 1000):
 				slowdown()
-			if linear_velocity == Vector2(0, 0):
+			if abs(linear_velocity.x) + abs(linear_velocity.y) < 20:
 				linear_velocity = Vector2(250, 250).rotated(randf_range(-3.14, 3.14))
 		
 	if hitframes == 0:
