@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://wkodf4v7lfy8"]
+[gd_scene load_steps=34 format=3 uid="uid://wkodf4v7lfy8"]
 
 [ext_resource type="Script" path="res://scenes/setup.gd" id="1_i7nya"]
 [ext_resource type="Script" path="res://scenes/UIhandler.gd" id="1_mf50h"]
@@ -9,11 +9,24 @@
 [ext_resource type="Texture2D" uid="uid://dofh8cnpiwei0" path="res://assets/dbox1.png" id="9_eu8tn"]
 [ext_resource type="LabelSettings" uid="uid://unaly7vgkllc" path="res://assets/dlogfont.tres" id="10_7vcbv"]
 [ext_resource type="Script" path="res://scenes/prestige.gd" id="11_8ustm"]
+[ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="11_sc4nv"]
+[ext_resource type="Texture2D" uid="uid://c124uteyxo4u0" path="res://assets/faceplonk.png" id="11_td0sp"]
 [ext_resource type="Texture2D" uid="uid://bu4j4onj5r571" path="res://assets/button3.png" id="11_ylka4"]
+[ext_resource type="Texture2D" uid="uid://bs1tjoigiv5ty" path="res://assets/faceplonka.png" id="12_l782e"]
+[ext_resource type="Texture2D" uid="uid://bfqb3ifbfnawh" path="res://assets/faceplonkb.png" id="13_f0wfq"]
 [ext_resource type="Script" path="res://scenes/stats.gd" id="13_xdggn"]
 [ext_resource type="LabelSettings" uid="uid://ddga0o5jseep1" path="res://assets/statfont.tres" id="14_r7ti2"]
 [ext_resource type="Texture2D" uid="uid://wumaqwn0mi5c" path="res://assets/screen1.png" id="15_7hljt"]
+[ext_resource type="Texture2D" uid="uid://dhiwc6qal224y" path="res://assets/faceplonk2.png" id="15_xtgi4"]
+[ext_resource type="Texture2D" uid="uid://b6wp66rgd1v0y" path="res://assets/faceplonk2a.png" id="16_f6qch"]
 [ext_resource type="Texture2D" uid="uid://b1yp647imim22" path="res://assets/screen2.png" id="16_fit7a"]
+[ext_resource type="Texture2D" uid="uid://sqxkgvwfdoc8" path="res://assets/faceplonk2b.png" id="17_dpwxo"]
+[ext_resource type="Texture2D" uid="uid://8lhgnq4qrmya" path="res://assets/faceplonk3.png" id="18_qb1ts"]
+[ext_resource type="Texture2D" uid="uid://dao8eenlrhha8" path="res://assets/faceplonk3a.png" id="19_v0da5"]
+[ext_resource type="Texture2D" uid="uid://ct70bckun13jk" path="res://assets/faceplonk3b.png" id="20_6fhsj"]
+[ext_resource type="Texture2D" uid="uid://bil2ck2gwt6bo" path="res://assets/faceplonk4.png" id="21_wuxgg"]
+[ext_resource type="Texture2D" uid="uid://c8npy8mf1h6bh" path="res://assets/faceplonk4a.png" id="22_d2wfk"]
+[ext_resource type="Texture2D" uid="uid://p6yhmxsyp5yv" path="res://assets/faceplonk4b.png" id="23_8qn07"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nfiy4"]
 font_size = 32
@@ -27,6 +40,65 @@ font_color = Color(3.36915e-07, 0.434287, 0.406051, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_t6l4c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kvn6i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_otspk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_td0sp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_l782e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_f0wfq")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_xtgi4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_f6qch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_dpwxo")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_qb1ts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_v0da5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_6fhsj")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_wuxgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_d2wfk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_8qn07")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}]
 
 [node name="Playground" type="Node2D"]
 
@@ -204,8 +276,27 @@ label_settings = SubResource("LabelSettings_t6l4c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="MarginContainer6" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="AddBall5" type="TextureButton" parent="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox"]
+layout_mode = 2
+texture_normal = ExtResource("4_p3gc2")
+texture_pressed = ExtResource("5_dj83m")
+texture_disabled = ExtResource("11_ylka4")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall5"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 50.0
+label_settings = SubResource("LabelSettings_t6l4c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox"]
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="Prestige" type="TextureButton" parent="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox"]
@@ -261,9 +352,19 @@ stretch_mode = 0
 [node name="Dialogue" type="Label" parent="MarginContainer/DialogueBox"]
 layout_mode = 0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 45.0
 label_settings = ExtResource("10_7vcbv")
 vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/DialogueBox"]
+position = Vector2(0, -100)
+texture = ExtResource("11_sc4nv")
+centered = false
+
+[node name="DialogueChar" type="AnimatedSprite2D" parent="MarginContainer/DialogueBox/Sprite2D"]
+sprite_frames = SubResource("SpriteFrames_otspk")
+animation = &"0"
+centered = false
 
 [node name="StatsLayer" type="CanvasLayer" parent="."]
 
@@ -368,6 +469,7 @@ stretch_mode = 0
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall2" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall3" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_3_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall4" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_4_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall5" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_5_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/Prestige" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_prestige_pressed"]
 [connection signal="pressed" from="MarginContainer/DialogueBox" to="MarginContainer" method="_on_dialogue_box_pressed"]
 [connection signal="pressed" from="StatsLayer/StatsMenu/TextureButton" to="StatsLayer/StatsMenu" method="_on_texture_button_pressed"]

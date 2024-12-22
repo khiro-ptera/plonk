@@ -8,12 +8,14 @@ var boons = 0
 var bbUnlock = false
 var starUnlock = false
 var gravUnlock = false
+var cometUnlock = false
 
 # costs
 var ballCost = 1
-var bigBallCost = 3
-var starCost = 5
-var gravCost = 50
+var bigBallCost = 5
+var starCost = 25
+var gravCost = 98
+var cometCost = 5000
 
 # modifiers
 var plonkGain = 1
@@ -39,7 +41,9 @@ var plonkyunlock = false
 var landName = "Plonkland"
 
 func resetPrices() -> void:
-	var ballCost = 1
-	var bigBallCost = 3
-	var starCost = 5
-	var gravCost = 50
+	ballCost = 1
+	bigBallCost = 3
+	starCost = 5
+	gravCost = 50
+	cometCost = 5000
+	

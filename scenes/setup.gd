@@ -15,6 +15,7 @@ signal addBall(b)
 func _ready() -> void:
 	genBox(32, 24, Vector2(50, 50))
 	Global.plonks += 1
+	spawnBall(5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -91,8 +92,8 @@ func plonkMult(mult, time) -> void:
 	Global.plonkMult /= mult
 
 func meteorRain() -> void:
-	for i in randi_range(int(Global.eventTime * 2), int(Global.eventTime * 2) + 10):
-		spawnBall(4, Vector2(randi_range(100, 640), 100), Vector2(randi_range(-50, 50), randi_range(275, 375)))
+	for i in randi_range(int(Global.eventTime * 2) - 10, int(Global.eventTime * 2)):
+		spawnBall(4, Vector2(randi_range(100, 640), 100), Vector2(randi_range(-50, 50), randi_range(275, 325)))
 		await get_tree().create_timer(0.5).timeout
 
 func spawnBall(type = 0, pos = Vector2(randi_range(80, 660), randi_range(80, 500)), 
@@ -114,6 +115,8 @@ vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, posi
 	elif type == 4:
 		instance.timed = 5.0
 		instance.scaler = 0.18
+	elif type == 5:
+		instance.scaler = 0.18
 
 func addBlock(pos) -> void:
 	var instance = block.instantiate()
@@ -129,7 +132,7 @@ func _on_add_ball_pressed() -> void:
 func _on_add_ball_2_pressed() -> void:
 	if Global.plonks >= Global.bigBallCost:
 		Global.plonks -= Global.bigBallCost
-		Global.bigBallCost *= 10
+		Global.bigBallCost *= 4
 		spawnBall(1)
 
 func _on_add_ball_3_pressed() -> void:
@@ -143,6 +146,12 @@ func _on_add_ball_4_pressed() -> void:
 		Global.plonks -= Global.gravCost
 		Global.gravCost *= 7
 		spawnBall(3)
+
+func _on_add_ball_5_pressed() -> void:
+	if Global.plonks >= Global.cometCost:
+		Global.plonks -= Global.cometCost
+		Global.cometCost *= 11
+		spawnBall(5)
 
 func _on_prestige_pressed() -> void:
 	var boons = int(Global.plonks / 10000)

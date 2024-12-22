@@ -40,6 +40,11 @@ func _physics_process(delta: float) -> void:
 			timed -= delta
 			if timed <= 0.0:
 				queue_free()
+		elif type == 5:
+			if randi_range(1, 10000) < int(delta * 1000):
+				slowdown()
+			if linear_velocity == Vector2(0, 0):
+				linear_velocity = Vector2(250, 250).rotated(randf_range(-3.14, 3.14))
 		
 	if hitframes == 0:
 		if abs(linear_velocity.x) + abs(linear_velocity.y) > 250:
@@ -49,6 +54,13 @@ func _physics_process(delta: float) -> void:
 		else:
 			$AnimatedSprite2D.play(str(type) + "_mid")
 	hitframes -= 1
+	
+func slowdown() -> void:
+	while abs(linear_velocity.x) + abs(linear_velocity.y) > 10:
+		linear_velocity *= 0.85
+		await get_tree().create_timer(0.1).timeout
+	linear_velocity = Vector2(0, 0)
+	
 
 func _on_body_entered(body: Node) -> void:
 	if type == 4:

@@ -2,6 +2,7 @@ extends MarginContainer
 
 var dialogue = 0
 var inDialogue = false
+var dialogueFace = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +16,7 @@ func _ready() -> void:
 		$VBoxContainer2/HBoxContainer/ShopBox/AddBall2.disabled = true
 		$VBoxContainer2/HBoxContainer/ShopBox/AddBall3.disabled = true
 		$VBoxContainer2/HBoxContainer/ShopBox/AddBall4.disabled = true
+		$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = true
 	elif Global.prestige == 1:
 		loadDialogue("Heya, I see u've prestiged! Gratz!", 100)
 	else: 
@@ -34,12 +36,14 @@ func _process(delta: float) -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/Label.size = $VBoxContainer2/HBoxContainer/ShopBox.size
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall/Label.text = "Plonkus " + str(Global.ballCost)
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall.size
-	$VBoxContainer2/HBoxContainer/ShopBox/AddBall2/Label.text = "Big Plonkus " + str(Global.bigBallCost)
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall2/Label.text = "Big " + str(Global.bigBallCost)
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall2/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall2.size
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall3/Label.text = "Stonkus " + str(Global.starCost)
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall3/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall3.size
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall4/Label.text = "Gronkus " + str(Global.gravCost)
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall4/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall4.size
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall5/Label.text = "Comet " + str(Global.cometCost)
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall5/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall5.size
 	
 	if Global.bbUnlock == false:
 		if Global.plonks > 9 && !inDialogue:
@@ -60,12 +64,21 @@ func _process(delta: float) -> void:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall3/Label.text = "???"
 		
 	if Global.gravUnlock == false:
-		if Global.totalLV > 9800 && !inDialogue:
+		if Global.totalLV > 1960 && !inDialogue:
 			Global.gravUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall4.disabled = false
 			loadDialogue("Wowzers! Those r sum FAST plonki! I think uve earned the gronkus license!", 25)
 		else:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall4/Label.text = "???"
+		
+	if Global.cometUnlock == false:
+		if Global.plonks > 4999 && !inDialogue:
+			Global.cometUnlock = true
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = false
+			loadDialogue("4 reaching 5k plonks, i present 2u... Cometz! 
+			They go slow... then they go fast! Give em a shot!", -2)
+		else:
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall5/Label.text = "???"
 	
 	# boon/shop artifacts
 	$VBoxContainer2/HBoxContainer/BoonBox/Label.size.x = $VBoxContainer2/HBoxContainer/BoonBox.size.x
@@ -85,10 +98,13 @@ func _process(delta: float) -> void:
 	if dialogue == -1 && !inDialogue:
 		$DialogueBox.hide()
 	else:
+		$DialogueBox/Sprite2D.position.y = -120
+		$DialogueBox/Sprite2D/DialogueChar.play(str(dialogueFace))
 		$DialogueBox.show()
 
-func loadDialogue(d: String, next: int) -> void:
+func loadDialogue(d: String, next: int, face: int = 0) -> void:
 	$DialogueBox.disabled = true
+	dialogueFace = face
 	inDialogue = true
 	var s = ""
 	for i in d.length():
@@ -106,27 +122,27 @@ func _on_dialogue_box_pressed() -> void:
 		-1:
 			loadDialogue("how r u seeing this... >:(", -1)
 		0:
-			loadDialogue("Wait a min! U dont look like ur from here... Maybe u speak humanese?", 1)
+			loadDialogue("Wait a min! U dont look like ur from here... Maybe u speak humanese?", 1, 2)
 		1:
-			loadDialogue("U do! Welcome to Plonkworld! We havent gotten visitorz in so long!", 2)
+			loadDialogue("U do! Welcome to Plonkworld! We havent gotten visitorz in so long!", 2, 3)
 		2:
 			loadDialogue("My namez Plonky! Im a bit of a HUGE deal round here! :>", 3)
 		3: 
-			loadDialogue("And well. Thatz cuz... im da mayor of Plonktopolis! In the pixelz!", 4)
+			loadDialogue("And well. Thatz cuz... im da mayor of Plonktopolis! In the pixelz!", 4, 3)
 		4: 
-			loadDialogue("...Not impressed, huh?", 5)
+			loadDialogue("...Not impressed, huh?", 5, 1)
 		5: 
 			loadDialogue("Yea, yeah, i dont blame u. The city haznt been in da best shape lately, 
-			i admit... The Plonkconomy iz down. Unemplonkment iz at an all time high. ", 6)
+			i admit... The Plonkconomy iz down. Unemplonkment iz at an all time high. ", 6, 1)
 		6: 
-			loadDialogue("And, worst of all, everyplonkz losing their passion 4 Plonking!", 7)
+			loadDialogue("And, worst of all, everyplonkz losing their passion 4 Plonking!", 7, 2)
 		7: 
 			loadDialogue("Say, wont u help a plonkus in need? U look like a dependable fella.", 8)
 		8: 
 			loadDialogue("Ill let u handle this lot of Plonktopolis. 
 			Itz called Plonkland, but u can call it whatevr u want.", 9)
 		9: 
-			loadDialogue("Yes? OK, itz settled then! I will leave Plonkland in ur capable hands!", 10)
+			loadDialogue("Yes? OK, itz settled then! I will leave Plonkland in ur capable hands!", 10, 3)
 		10: 
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall.disabled = false
 			loadDialogue("Start off by buying a plonkus with the 1 plonk ive graciously provided u.", 11)
@@ -138,4 +154,5 @@ func _on_dialogue_box_pressed() -> void:
 		20:
 			loadDialogue("A stonkus iz a totally radical plonkus thatz a bit edgy. Dont get hurt!", -2)
 		25:
-			loadDialogue("Gronki have something weighing them down. Itz called gravy tee or something idk.", -2)
+			loadDialogue("Gronki r alwaysz being weighed down. 
+			Itz called gravy tee or something, idk.", -2)

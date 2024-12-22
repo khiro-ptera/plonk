@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://crdygc5xl36pf"]
+[gd_scene load_steps=57 format=3 uid="uid://crdygc5xl36pf"]
 
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="1_0kl4m"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_s3pyh"]
@@ -43,6 +43,16 @@
 [ext_resource type="Texture2D" uid="uid://bbnwvvq0bsrp4" path="res://assets/face18a.png" id="41_hc8yb"]
 [ext_resource type="Texture2D" uid="uid://qd3l88f8n2br" path="res://assets/face18b.png" id="42_unpc2"]
 [ext_resource type="Texture2D" uid="uid://xng1qhk6fos3" path="res://assets/face19.png" id="43_twn3w"]
+[ext_resource type="Texture2D" uid="uid://b5od6i8skseqp" path="res://assets/face22.png" id="44_bke4f"]
+[ext_resource type="Texture2D" uid="uid://bh3jxeb5r52ch" path="res://assets/face22a.png" id="45_qj6rw"]
+[ext_resource type="Texture2D" uid="uid://p322s7sn28qf" path="res://assets/face22b.png" id="46_2xao4"]
+[ext_resource type="Texture2D" uid="uid://cnyunef2if7qn" path="res://assets/face23.png" id="47_y0tqm"]
+[ext_resource type="Texture2D" uid="uid://6ivwdhqd8h2n" path="res://assets/face21a.png" id="48_kkgrv"]
+[ext_resource type="Texture2D" uid="uid://dlne4vp80t7tr" path="res://assets/face21b.png" id="49_kotcf"]
+[ext_resource type="Texture2D" uid="uid://c75rlky6lmgoy" path="res://assets/face21.png" id="50_uiepy"]
+[ext_resource type="Texture2D" uid="uid://b2ocmenonfet8" path="res://assets/face20.png" id="51_cgq5h"]
+[ext_resource type="Texture2D" uid="uid://dgcilf3q2jlvy" path="res://assets/face20a.png" id="52_wnsc4"]
+[ext_resource type="Texture2D" uid="uid://78yt4cmu270v" path="res://assets/face20b.png" id="53_i8cx8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mtvmg"]
 friction = 0.0
@@ -257,6 +267,56 @@ animations = [{
 "loop": true,
 "name": &"4_fast",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("44_bke4f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_qj6rw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_2xao4")
+}],
+"loop": true,
+"name": &"5_fast",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("47_y0tqm")
+}],
+"loop": true,
+"name": &"5_hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("48_kkgrv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_kotcf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_uiepy")
+}],
+"loop": true,
+"name": &"5_mid",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("51_cgq5h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_wnsc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_i8cx8")
+}],
+"loop": true,
+"name": &"5_slow",
+"speed": 2.0
 }]
 
 [node name="Ball" type="RigidBody2D"]
@@ -284,6 +344,6 @@ disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i4oj2")
-animation = &"4_fast"
+animation = &"5_fast"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
