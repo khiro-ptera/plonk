@@ -19,8 +19,11 @@ func _ready() -> void:
 		$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = true
 	elif Global.prestige == 1:
 		loadDialogue("Heya, I c uve prestiged! Gratz!", 100)
+		Global.plonks += 1
 	else: 
-		loadDialogue("", -1)
+		loadDialogue("Another day, another prestige!
+		Here's ur plot!", -2)
+		Global.plonks += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

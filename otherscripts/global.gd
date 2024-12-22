@@ -30,12 +30,7 @@ var totalLV = 0
 var totalAV = 0
 
 # boons
-var shockwave = false
-var spincellerate = false
-var smallwalls = false
-var bigballs = false
-var doubleplonkchance = false
-var plonkyunlock = false
+
 
 # other/control
 var landName = "Plonkland"

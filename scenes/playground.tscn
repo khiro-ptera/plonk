@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://btoc5hc8b87od" path="res://assets/button4.png" id="3_v3vwa"]
 [ext_resource type="Texture2D" uid="uid://bvd5kfcaoisjc" path="res://assets/button1.png" id="4_p3gc2"]
 [ext_resource type="Texture2D" uid="uid://c7ikypel5j8e8" path="res://assets/button2.png" id="5_dj83m"]
-[ext_resource type="Texture2D" uid="uid://dofh8cnpiwei0" path="res://assets/dbox1.png" id="9_eu8tn"]
 [ext_resource type="LabelSettings" uid="uid://unaly7vgkllc" path="res://assets/dlogfont.tres" id="10_7vcbv"]
 [ext_resource type="Script" path="res://scenes/prestige.gd" id="11_8ustm"]
+[ext_resource type="Texture2D" uid="uid://bl7qvknbvd83m" path="res://assets/dbox2.png" id="11_87yb3"]
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="11_sc4nv"]
 [ext_resource type="Texture2D" uid="uid://c124uteyxo4u0" path="res://assets/faceplonk.png" id="11_td0sp"]
 [ext_resource type="Texture2D" uid="uid://bu4j4onj5r571" path="res://assets/button3.png" id="11_ylka4"]
@@ -373,7 +373,7 @@ layout_mode = 2
 [node name="DialogueBox" type="TextureButton" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-texture_normal = ExtResource("9_eu8tn")
+texture_normal = ExtResource("11_87yb3")
 stretch_mode = 0
 
 [node name="Dialogue" type="Label" parent="MarginContainer/DialogueBox"]

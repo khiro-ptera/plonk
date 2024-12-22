@@ -41,9 +41,9 @@ func _physics_process(delta: float) -> void:
 			if timed <= 0.0:
 				queue_free()
 		elif type == 5:
-			if randi_range(1, 10000) < int(delta * 1000):
+			if randi_range(1, 20000) < int(delta * 1000):
 				slowdown()
-			if abs(linear_velocity.x) + abs(linear_velocity.y) < 20:
+			if abs(linear_velocity.x) + abs(linear_velocity.y) < 10:
 				linear_velocity = Vector2(250, 250).rotated(randf_range(-3.14, 3.14))
 		
 	if hitframes == 0:
@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	hitframes -= 1
 	
 func slowdown() -> void:
-	while abs(linear_velocity.x) + abs(linear_velocity.y) > 10:
+	while abs(linear_velocity.x) + abs(linear_velocity.y) > 20:
 		linear_velocity *= 0.85
 		await get_tree().create_timer(0.1).timeout
 	linear_velocity = Vector2(0, 0)
