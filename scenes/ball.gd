@@ -69,4 +69,5 @@ func _on_body_entered(body: Node) -> void:
 	Global.plonks += Global.plonkGain * Global.plonkMult
 	Global.totalCollisions += 1
 	hitframes = 15
+	$Bounce1.play()
 	$AnimatedSprite2D.play(str(type) + "_hit")

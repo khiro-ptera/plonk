@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://crdygc5xl36pf"]
+[gd_scene load_steps=58 format=3 uid="uid://crdygc5xl36pf"]
 
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="1_0kl4m"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_s3pyh"]
@@ -53,6 +53,7 @@
 [ext_resource type="Texture2D" uid="uid://b2ocmenonfet8" path="res://assets/face20.png" id="51_cgq5h"]
 [ext_resource type="Texture2D" uid="uid://dgcilf3q2jlvy" path="res://assets/face20a.png" id="52_wnsc4"]
 [ext_resource type="Texture2D" uid="uid://78yt4cmu270v" path="res://assets/face20b.png" id="53_i8cx8"]
+[ext_resource type="AudioStream" uid="uid://d3amt0wdw7p4" path="res://assets/retro_coin_01.ogg" id="54_nmqxf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mtvmg"]
 friction = 0.0
@@ -345,5 +346,9 @@ disabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i4oj2")
 animation = &"5_fast"
+
+[node name="Bounce1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("54_nmqxf")
+volume_db = -40.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

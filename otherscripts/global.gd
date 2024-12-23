@@ -34,6 +34,7 @@ var totalAV = 0
 
 # other/control
 var landName = "Plonkland"
+var muted = false
 
 func resetPrices() -> void:
 	ballCost = 1
