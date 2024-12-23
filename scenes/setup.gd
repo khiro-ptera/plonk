@@ -10,6 +10,7 @@ var eventChance = 50000 # 1000delta/eventChance is actual chance of event after 
 
 signal event(e)
 signal addBall(b)
+signal prestige()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -156,4 +157,8 @@ func _on_prestige_pressed() -> void:
 	Global.plonks = 0
 	Global.prestige += 1
 	Global.boons += boons
-	get_tree().reload_current_scene()
+	var children = get_children()
+	for child in children:
+		child.free()
+	genBox(32, 24, Vector2(50, 50))
+	prestige.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://wkodf4v7lfy8"]
+[gd_scene load_steps=41 format=3 uid="uid://wkodf4v7lfy8"]
 
 [ext_resource type="Script" path="res://scenes/setup.gd" id="1_i7nya"]
 [ext_resource type="Script" path="res://scenes/background.gd" id="1_jgpkw"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://bil2ck2gwt6bo" path="res://assets/faceplonk4.png" id="21_wuxgg"]
 [ext_resource type="Texture2D" uid="uid://c8npy8mf1h6bh" path="res://assets/faceplonk4a.png" id="22_d2wfk"]
 [ext_resource type="Texture2D" uid="uid://p6yhmxsyp5yv" path="res://assets/faceplonk4b.png" id="23_8qn07"]
+[ext_resource type="Script" path="res://scenes/boon_deck.gd" id="26_uisgr"]
 [ext_resource type="Script" path="res://scenes/audio_handler.gd" id="30_ogrux"]
 [ext_resource type="AudioStream" uid="uid://dbk4fhygt0umk" path="res://assets/test1_1.wav" id="31_2awm3"]
 
@@ -44,7 +45,7 @@ outline_size = 1
 [sub_resource type="LabelSettings" id="LabelSettings_lhmom"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7fcpc"]
-font_size = 64
+font_size = 32
 font_color = Color(3.36915e-07, 0.434287, 0.406051, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t6l4c"]
@@ -376,7 +377,10 @@ texture_disabled = ExtResource("11_ylka4")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+text = "Test"
 label_settings = SubResource("LabelSettings_ks15b")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RightMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(15, 0)
@@ -408,6 +412,10 @@ centered = false
 sprite_frames = SubResource("SpriteFrames_otspk")
 animation = &"3"
 centered = false
+
+[node name="BoonDeck" type="Node2D" parent="MarginContainer"]
+visible = false
+script = ExtResource("26_uisgr")
 
 [node name="StatsLayer" type="CanvasLayer" parent="."]
 
@@ -516,6 +524,7 @@ autoplay = true
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/TopBar/SoundButton" to="AudioHandler" method="_on_sound_button_pressed"]
 [connection signal="addBall" from="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="StatsLayer/StatsMenu" method="_on_objects_add_ball"]
 [connection signal="event" from="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="MarginContainer/VBoxContainer2/TopBar/Event" method="_on_objects_event"]
+[connection signal="prestige" from="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="MarginContainer" method="_on_objects_prestige"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall2" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer2/HBoxContainer/ShopBox/AddBall3" to="MarginContainer/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_3_pressed"]

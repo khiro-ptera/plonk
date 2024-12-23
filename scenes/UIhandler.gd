@@ -10,20 +10,12 @@ func _ready() -> void:
 	$VBoxContainer2/HBoxContainer/ObjBox.custom_minimum_size.x = get_viewport().size.x * 800 / 1152
 	$VBoxContainer2/HBoxContainer/ShopBox.custom_minimum_size.x = get_viewport().size.x * 120 / 1152
 	$VBoxContainer2/HBoxContainer/BoonBox.custom_minimum_size.x = get_viewport().size.x * 120 / 1152
-	if Global.prestige == 0:
-		loadDialogue(":)... :] >_O :3? >:0 0.o >.<!", 0)
-		$VBoxContainer2/HBoxContainer/ShopBox/AddBall.disabled = true
-		$VBoxContainer2/HBoxContainer/ShopBox/AddBall2.disabled = true
-		$VBoxContainer2/HBoxContainer/ShopBox/AddBall3.disabled = true
-		$VBoxContainer2/HBoxContainer/ShopBox/AddBall4.disabled = true
-		$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = true
-	elif Global.prestige == 1:
-		loadDialogue("Heya, I c uve prestiged! Gratz!", 100)
-		Global.plonks += 1
-	else: 
-		loadDialogue("Another day, another prestige!
-		Here's ur plot!", -2)
-		Global.plonks += 1
+	loadDialogue(":)... :] >_O :3? >:0 0.o >.<!", 0)
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall.disabled = true
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall2.disabled = true
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall3.disabled = true
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall4.disabled = true
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -85,6 +77,7 @@ func _process(delta: float) -> void:
 	
 	# boon/shop artifacts
 	$VBoxContainer2/HBoxContainer/BoonBox/Label.size.x = $VBoxContainer2/HBoxContainer/BoonBox.size.x
+	$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon/Label.size = $VBoxContainer2/HBoxContainer/BoonBox/DrawBoon.size
 	if Global.prestige == 0:
 		$VBoxContainer2/HBoxContainer/BoonBox/Label.text = "???"
 		$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon.visible = false
@@ -121,6 +114,16 @@ func loadDialogue(d: String, next: int, face: int = 0) -> void:
 
 func _on_draw_boon_pressed() -> void:
 	pass # Replace with function body.
+	
+
+func _on_objects_prestige() -> void:
+	if Global.prestige == 1:
+		loadDialogue("Heya, I c uve prestiged! Gratz!", 100)
+		Global.plonks += 1
+	else: 
+		loadDialogue("Another day, another prestige!
+		Here's ur plot!", -2)
+		Global.plonks += 1
 
 func _on_dialogue_box_pressed() -> void:
 	match dialogue:
@@ -169,7 +172,7 @@ func _on_dialogue_box_pressed() -> void:
 		100:
 			loadDialogue("That meanz i will b taking that land back.", 101)
 		101:
-			loadDialogue("But wait dont b upset!", -102, 2)
+			loadDialogue("But wait dont b upset!", 102, 2)
 		102:
 			loadDialogue("Ill give u a new plot, and a boon token 4 every 10000 plonks u had!", 103, 3)
 		103:
