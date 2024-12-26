@@ -16,6 +16,8 @@ func _ready() -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall3.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall4.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = true
+	
+	$BoonDeck.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -83,8 +85,8 @@ func _process(delta: float) -> void:
 		$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon.visible = false
 		$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon.disabled = true
 	else:
-		$VBoxContainer2/HBoxContainer/BoonBox/Label.text = "Boons"
-		$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon/Label.text = str(Global.boons)
+		$VBoxContainer2/HBoxContainer/BoonBox/Label.text = "Boons: " + str(Global.boons)
+		$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon/Label.text = "Draw Boon"
 		$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon.visible = true
 		if Global.boons == 0:
 			$VBoxContainer2/HBoxContainer/BoonBox/DrawBoon.disabled = true
@@ -113,7 +115,7 @@ func loadDialogue(d: String, next: int, face: int = 0) -> void:
 	inDialogue = false
 
 func _on_draw_boon_pressed() -> void:
-	pass # Replace with function body.
+	$BoonDeck.visible = true
 	
 
 func _on_objects_prestige() -> void:

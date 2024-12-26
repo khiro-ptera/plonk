@@ -30,7 +30,7 @@ var totalLV = 0
 var totalAV = 0
 
 # boons
-
+var active = []
 
 # other/control
 var landName = "Plonkland"
