@@ -10,7 +10,7 @@ func _ready() -> void:
 	$VBoxContainer2/HBoxContainer/ObjBox.custom_minimum_size.x = get_viewport().size.x * 800 / 1152
 	$VBoxContainer2/HBoxContainer/ShopBox.custom_minimum_size.x = get_viewport().size.x * 120 / 1152
 	$VBoxContainer2/HBoxContainer/BoonBox.custom_minimum_size.x = get_viewport().size.x * 120 / 1152
-	loadDialogue(":)... :] >_O :3? >:0 0.o >.<!", 0)
+	loadDialogue(":)... :] >_O :3? >:0, 0.o >.<!", 0)
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall2.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall3.disabled = true
@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 			Global.bbUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall2.disabled = false
 			loadDialogue("I c uve collected 10 plonks! Ill give u the big plonkus license!
-			U can now hire big plonki, which are hulking variants of the classic plonkus.", -2)
+			U can now hire big plonki, which r hulking variants of the classic plonkus.", -2)
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall2/Label.text = "Big Plonkus " + str(Global.bigBallCost)
 		else:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall2/Label.text = "???"
@@ -56,7 +56,7 @@ func _process(delta: float) -> void:
 		if Global.totalCollisions > 124 && !inDialogue:
 			Global.starUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall3.disabled = false
-			loadDialogue("Uve plonked 125 times! Awesomesauce! I now permit u to employ stonki!", 20)
+			loadDialogue("Uve plonked 125 times! Awesomesauce! I now permit u 2 employ stonki!", 20)
 		else:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall3/Label.text = "???"
 		
@@ -118,6 +118,7 @@ func _on_draw_boon_pressed() -> void:
 	$BoonSelection.visible = true
 
 func _on_objects_prestige() -> void:
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall.disabled = false
 	if Global.prestige == 1:
 		loadDialogue("Heya, I c uve prestiged! Gratz!", 100)
 		Global.plonks += 1
@@ -138,9 +139,9 @@ func _on_dialogue_box_pressed() -> void:
 		0:
 			loadDialogue("Wait a min! U dont look like ur from here... Maybe u speak humanese?", 1, 2)
 		1:
-			loadDialogue("U do! Welcome to Plonkworld! We havent gotten visitorz in so long!", 2, 3)
+			loadDialogue("U do! Welcome 2 Plonkworld! We havent gotten visitorz in soo long!", 2, 3)
 		2:
-			loadDialogue("My namez Plonky! Im a bit of a HUGE deal round here! :>", 3)
+			loadDialogue("My namez Plonky! Im a bit ofa HUGE deal round here! :>", 3)
 		3: 
 			loadDialogue("And well. Thatz cuz... im da mayor of Plonktopolis! In the pixelz!", 4, 3)
 		4: 
@@ -162,9 +163,9 @@ func _on_dialogue_box_pressed() -> void:
 			Global.plonks += 1
 			loadDialogue("Start off by buying a plonkus with the 1 plonk ive graciously provided u.", 11)
 		11: 
-			loadDialogue("Now watch as ur plonks go up whenever your plonkus plonks!", 12)
+			loadDialogue("Now watch as ur plonks go up whenever ur plonkus plonks!", 12)
 		12: 
-			loadDialogue("U get it now? Okie dokey, glhf! I got other stuffz to do so cya 4 now!", -2)
+			loadDialogue("U get it now? Okie dokey, glhf! I got other stuffz 2 do so cya 4 now!", -2)
 			
 		20:
 			loadDialogue("A stonkus iz a totally radical plonkus thatz a bit edgy. Dont get hurt!", -2)
@@ -180,7 +181,7 @@ func _on_dialogue_box_pressed() -> void:
 		102:
 			loadDialogue("Ill give u a new plot, and a boon token 4 every 10000 plonks u had!", 103, 3)
 		103:
-			loadDialogue("U can use tokenz to draw permanent boon cards to help u on ur next land!", 104)
+			loadDialogue("U can use tokenz 2 draw permanent boon cards 2 help u on ur next land!", 104)
 		104:
 			loadDialogue("Okie, glhf! Im outta here!", -2, 3)
 		

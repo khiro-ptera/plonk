@@ -29,6 +29,7 @@ func updateCounts() -> void:
 	$HBoxContainer/Menu/Ball1.text = "Big Plonki " + str(ballCounts[1])
 	$HBoxContainer/Menu/Ball2.text = "Stonki " + str(ballCounts[2])
 	$HBoxContainer/Menu/Ball3.text = "Gronki " + str(ballCounts[3])
+	$HBoxContainer/Menu/Ball5.text = "Comets " + str(ballCounts[5])
 
 func _on_texture_button_pressed() -> void:
 	get_parent().visible = false

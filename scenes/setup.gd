@@ -37,6 +37,7 @@ func _process(delta: float) -> void:
 	else:
 		if randi_range(1, eventChance) < int(delta * 1000): # chance per frame for an event after cd
 			var rtemp = randi_range(1, 3)
+			print(str(rtemp))
 			if rtemp == 1:
 				event.emit(1) 
 				print("hi")

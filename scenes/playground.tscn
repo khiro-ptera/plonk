@@ -507,6 +507,12 @@ label_settings = ExtResource("14_r7ti2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Ball5" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
+layout_mode = 2
+label_settings = ExtResource("14_r7ti2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TotalC" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
 layout_mode = 2
 label_settings = ExtResource("14_r7ti2")
