@@ -135,6 +135,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_mf50h")
 
+[node name="Boons" type="MarginContainer" parent="Main"]
+custom_minimum_size = Vector2(0, 280)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="ActiveBoons" type="MarginContainer" parent="Main/Boons"]
+layout_mode = 2
+script = ExtResource("12_nbh8g")
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="Main"]
 layout_mode = 2
 
@@ -361,6 +371,7 @@ layout_mode = 2
 
 [node name="BoonBox" type="VBoxContainer" parent="Main/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="Label" type="Label" parent="Main/VBoxContainer2/HBoxContainer/BoonBox"]
 layout_mode = 2
@@ -374,9 +385,10 @@ layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
 texture_disabled = ExtResource("11_ylka4")
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="Main/VBoxContainer2/HBoxContainer/BoonBox/DrawBoon"]
-layout_mode = 0
+layout_mode = 1
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Test"
@@ -396,19 +408,16 @@ centered = false
 [node name="MarginContainer2" type="MarginContainer" parent="Main/VBoxContainer2/HBoxContainer/BoonBox"]
 layout_mode = 2
 
-[node name="ActiveBoons" type="VBoxContainer" parent="Main/VBoxContainer2/HBoxContainer/BoonBox/MarginContainer2"]
-layout_mode = 2
-script = ExtResource("12_nbh8g")
-
 [node name="RightMargin" type="MarginContainer" parent="Main/VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="BotMargin" type="MarginContainer" parent="Main/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="BoonDeck" type="VBoxContainer" parent="Main"]
+[node name="BoonSelection" type="VBoxContainer" parent="Main"]
 layout_mode = 2
 script = ExtResource("26_uisgr")
 
@@ -432,7 +441,7 @@ centered = false
 
 [node name="DialogueChar" type="AnimatedSprite2D" parent="Main/DialogueBox/Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_otspk")
-animation = &"3"
+animation = &"0"
 centered = false
 
 [node name="StatsLayer" type="CanvasLayer" parent="."]
@@ -516,6 +525,30 @@ label_settings = ExtResource("14_r7ti2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CritChance" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
+layout_mode = 2
+label_settings = ExtResource("14_r7ti2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CritMult" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
+layout_mode = 2
+label_settings = ExtResource("14_r7ti2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SizeMult" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
+layout_mode = 2
+label_settings = ExtResource("14_r7ti2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spin" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
+layout_mode = 2
+label_settings = ExtResource("14_r7ti2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer2" type="MarginContainer" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -542,6 +575,7 @@ autoplay = true
 [connection signal="pressed" from="Main/VBoxContainer2/TopBar/SoundButton" to="AudioHandler" method="_on_sound_button_pressed"]
 [connection signal="addBall" from="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="StatsLayer/StatsMenu" method="_on_objects_add_ball"]
 [connection signal="event" from="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="Main/VBoxContainer2/TopBar/Event" method="_on_objects_event"]
+[connection signal="plonkyDia" from="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="Main" method="_on_objects_plonky_dia"]
 [connection signal="prestige" from="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="Main" method="_on_objects_prestige"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall2" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_2_pressed"]
@@ -550,7 +584,7 @@ autoplay = true
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall5" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_5_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/Prestige" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_prestige_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/BoonBox/DrawBoon" to="Main" method="_on_draw_boon_pressed"]
-[connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/BoonBox/DrawBoon" to="Main/BoonDeck" method="_on_draw_boon_pressed"]
-[connection signal="addBoon" from="Main/BoonDeck" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_boon_deck_add_boon"]
+[connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/BoonBox/DrawBoon" to="Main/BoonSelection" method="_on_draw_boon_pressed"]
+[connection signal="addBoon" from="Main/BoonSelection" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_boon_deck_add_boon"]
 [connection signal="pressed" from="Main/DialogueBox" to="Main" method="_on_dialogue_box_pressed"]
 [connection signal="pressed" from="StatsLayer/StatsMenu/TextureButton" to="StatsLayer/StatsMenu" method="_on_texture_button_pressed"]

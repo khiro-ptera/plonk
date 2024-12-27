@@ -15,6 +15,10 @@ func _process(delta: float) -> void:
 	$HBoxContainer/Menu/TotalC.text = "Total Collisions " + str(Global.totalCollisions)
 	$HBoxContainer/Menu/TotalLV.text = "Total Linear Velocity " + str(Global.totalLV)
 	$HBoxContainer/Menu/TotalAV.text = "Total Angular Velocity " + str(Global.totalAV)
+	$HBoxContainer/Menu/CritChance.text = "Crit Chance " + str(Global.critRate)
+	$HBoxContainer/Menu/CritMult.text = "Crit Multiplier " + str(Global.critMult)
+	$HBoxContainer/Menu/SizeMult.text = "Size Multiplier " + str(Global.plonkiScale)
+	$HBoxContainer/Menu/Spin.text = "Spin " + str(Global.spin)
 
 func _on_objects_add_ball(b: int) -> void:
 	ballCounts[b] += 1

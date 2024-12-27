@@ -20,8 +20,12 @@ var cometCost = 5000
 # modifiers
 var plonkGain = 1
 var plonkMult = 1 # NEVER ADD TO THIS VALUE
+var plonkiScale = 0.2
+var critRate = 0.01
+var critMult = 2
 var eventTime = 15.0 # MAX 60.0
 var plonkyScale = 0.2
+var spin = 0.0
 
 # stats
 var prestige = 0

@@ -13,6 +13,14 @@ outline_size = 4
 
 [node name="BoonCard" type="MarginContainer"]
 custom_minimum_size = Vector2(250, 150)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -250.0
+offset_bottom = 150.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_bsldp")
 
 [node name="Card" type="TextureButton" parent="."]

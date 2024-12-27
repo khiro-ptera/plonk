@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://crdygc5xl36pf"]
+[gd_scene load_steps=64 format=3 uid="uid://crdygc5xl36pf"]
 
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="1_0kl4m"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_s3pyh"]
@@ -54,6 +54,10 @@
 [ext_resource type="Texture2D" uid="uid://dgcilf3q2jlvy" path="res://assets/face20a.png" id="52_wnsc4"]
 [ext_resource type="Texture2D" uid="uid://78yt4cmu270v" path="res://assets/face20b.png" id="53_i8cx8"]
 [ext_resource type="AudioStream" uid="uid://d3amt0wdw7p4" path="res://assets/retro_coin_01.ogg" id="54_nmqxf"]
+[ext_resource type="AudioStream" uid="uid://b8y5tqdtqe7k7" path="res://assets/retro_coin_02.ogg" id="55_c2lk2"]
+[ext_resource type="Texture2D" uid="uid://dulf4ieatwlwj" path="res://assets/shockwave3.png" id="56_7y4gh"]
+[ext_resource type="Texture2D" uid="uid://bbvd7qh0xiuyj" path="res://assets/shockwave2.png" id="57_1e8ko"]
+[ext_resource type="Texture2D" uid="uid://boo6y5vhoomt7" path="res://assets/shockwave1.png" id="58_ccxdi"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mtvmg"]
 friction = 0.0
@@ -320,6 +324,26 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_0lhrj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("58_ccxdi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_7y4gh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_1e8ko")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7kms1"]
+radius = 50.0178
+
 [node name="Ball" type="RigidBody2D"]
 mass = 0.001
 physics_material_override = SubResource("PhysicsMaterial_mtvmg")
@@ -349,6 +373,20 @@ animation = &"5_fast"
 
 [node name="Bounce1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("54_nmqxf")
-volume_db = -40.0
+volume_db = -30.0
+
+[node name="Bounce2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("55_c2lk2")
+volume_db = -20.0
+
+[node name="SW" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_0lhrj")
+
+[node name="Area2D" type="Area2D" parent="SW"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SW/Area2D"]
+shape = SubResource("CircleShape2D_7kms1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="SW/Area2D" to="." method="_on_area_2d_area_entered"]

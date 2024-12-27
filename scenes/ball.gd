@@ -1,6 +1,8 @@
 extends RigidBody2D
 
-@onready var scaler = 0.2
+var wave = preload("res://scenes/wave.tscn")
+
+@onready var scaler = Global.plonkiScale
 @onready var oscale = Vector2(1, 1)
 @onready var type = 0
 var hitframes = 0
@@ -12,6 +14,8 @@ func _ready() -> void:
 	oscale = scale
 	scale = scale * scaler
 	$AnimatedSprite2D.play("0_mid")
+	$SW.hide()
+	$SW/Area2D/CollisionShape2D.disabled = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -26,7 +30,8 @@ func _physics_process(delta: float) -> void:
 		$StarSprite.show()
 		$CollisionPolygonStar.disabled = false
 		$CollisionShapeBall.disabled = true
-		angular_velocity *= 1 + (0.01 / abs(angular_velocity))
+		if abs(angular_velocity) > 0.05:
+			angular_velocity *= 1 + (0.01 / abs(angular_velocity))
 		$AnimatedSprite2D.rotate(-1 * angular_velocity / 90)
 	else:
 		$BallSprite.show()
@@ -45,6 +50,10 @@ func _physics_process(delta: float) -> void:
 				slowdown()
 			if abs(linear_velocity.x) + abs(linear_velocity.y) < 10:
 				linear_velocity = Vector2(250, 250).rotated(randf_range(-3.14, 3.14))
+	
+	# angular_velocity += Global.spin/10
+	if abs(angular_velocity) > 0.05:
+		angular_velocity *= 1 + (Global.spin / abs(angular_velocity))
 		
 	if hitframes == 0:
 		if abs(linear_velocity.x) + abs(linear_velocity.y) > 250:
@@ -66,8 +75,35 @@ func _on_body_entered(body: Node) -> void:
 	if type == 4:
 		queue_free()
 		return
-	Global.plonks += Global.plonkGain * Global.plonkMult
+	if Global.active.has("Shockwave"): # yeah this shockwave thing is bugged
+		shockwave()
+		# for i in 4:
+			# var iwave = wave.instantiate()
+			# var irand = randf_range(0.00, 3.14)
+			# iwave.rand = irand
+			# iwave.position = Vector2(50 * scaler, 50 * scaler).rotated(irand)
+			# call_deferred("add_child", iwave)
+			# add_child(iwave)
+	if randf_range(0.000, 1.000) <= Global.critRate:
+		Global.plonks += Global.plonkGain * Global.plonkMult * Global.critMult
+		$Bounce2.play()
+	else:
+		Global.plonks += Global.plonkGain * Global.plonkMult
+		$Bounce1.play()
 	Global.totalCollisions += 1
 	hitframes = 15
-	$Bounce1.play()
 	$AnimatedSprite2D.play(str(type) + "_hit")
+
+func shockwave() -> void:
+	$SW.show()
+	$SW/Area2D/CollisionShape2D.disabled = false
+	$SW.play("default")
+	$SW.scale = scale * 1.5
+	await get_tree().create_timer(0.3).timeout
+	$SW.hide()
+	$SW/Area2D/CollisionShape2D.disabled = true
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	linear_velocity += Vector2(randi_range(-15, 15), randi_range(-15, 15))
+	angular_velocity += randf_range(-0.5, 0.5)

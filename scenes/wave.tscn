@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://dyeek5l5ax0tc"]
+
+[ext_resource type="Texture2D" uid="uid://dc44cgde7m02g" path="res://assets/wave1.png" id="1_7uaps"]
+[ext_resource type="Script" path="res://scenes/wave.gd" id="1_p1lo5"]
+[ext_resource type="Texture2D" uid="uid://b2vll140p64sw" path="res://assets/wave2.png" id="2_uqyce"]
+[ext_resource type="Texture2D" uid="uid://cxn6d5qt2ibt1" path="res://assets/wave3.png" id="3_85ctr"]
+[ext_resource type="Texture2D" uid="uid://q5gx0ktcr1xd" path="res://assets/wave4.png" id="4_6ssfg"]
+[ext_resource type="Texture2D" uid="uid://daxy6y34vv0bk" path="res://assets/wave5.png" id="5_5doai"]
+[ext_resource type="Texture2D" uid="uid://qk0x60j6ty2o" path="res://assets/wave6.png" id="6_axl6m"]
+[ext_resource type="Texture2D" uid="uid://dejghbqdrmuaf" path="res://assets/wave7.png" id="7_xi4or"]
+[ext_resource type="Texture2D" uid="uid://8xoptwurfon1" path="res://assets/wave8.png" id="8_s23kf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b06x4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7uaps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uqyce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_85ctr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6ssfg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5doai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_axl6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xi4or")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_s23kf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Wave" type="StaticBody2D"]
+script = ExtResource("1_p1lo5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_b06x4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-11, -19, -10, -16, -5, -8, -1, 0, -12, 16, -10, 21, -6, 24, -3, 24, 3, 17, 9, 7, 11, 2, 11, -3, 3, -19, -2, -24, -6, -24)

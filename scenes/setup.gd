@@ -2,6 +2,7 @@ extends Node2D
 
 var ball = preload("res://scenes/ball.tscn")
 var block = preload("res://scenes/block.tscn")
+var plonky = preload("res://scenes/plonky.tscn")
 var eventcd = 90.0 # initialize for earlist first event, lower for testing purposes
 
 const maxEventcd = 60.0
@@ -13,11 +14,14 @@ var reinforce = 0
 signal event(e)
 signal addBall(b)
 signal prestige()
+signal plonkyDia()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	genBox(32, 24, Vector2(50, 50))
-	# Global.plonks = 100000
+	# Global.boons = 10
+	# Global.prestige = 1
+	# Global.plonks = 10000
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -95,10 +99,10 @@ func plonkMult(mult, time) -> void:
 
 func meteorRain() -> void:
 	for i in randi_range(int(Global.eventTime * 2) - 10, int(Global.eventTime * 2)):
-		spawnBall(4, Vector2(randi_range(100, 640), 100), Vector2(randi_range(-50, 50), randi_range(275, 325)))
+		spawnBall(4, Vector2(randi_range(120, 640), 125), Vector2(randi_range(-50, 50), randi_range(275, 325)))
 		await get_tree().create_timer(0.5).timeout
 
-func spawnBall(type = 0, pos = Vector2(randi_range(80, 660), randi_range(80, 500)), 
+func spawnBall(type = 0, pos = Vector2(randi_range(125, 650), randi_range(125, 450)), 
 vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, position, velocity
 	var instance = ball.instantiate()
 	add_child(instance)
@@ -107,18 +111,18 @@ vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, posi
 	instance.position = pos
 	instance.linear_velocity = vel
 	if type == 1:
-		instance.scaler = 0.5
+		instance.scaler = Global.plonkiScale * 2.5
 	elif type == 2:
-		instance.scaler = 0.4
+		instance.scaler = Global.plonkiScale * 2.0
 		instance.angular_velocity = 0.5
 	elif type == 3:
 		instance.linear_velocity = Vector2(0, 0)
 		instance.position.y = 100
 	elif type == 4:
 		instance.timed = 5.0
-		instance.scaler = 0.18
+		instance.scaler = Global.plonkiScale * 0.9
 	elif type == 5:
-		instance.scaler = 0.18
+		instance.scaler = Global.plonkiScale * 0.9
 
 func addBlock(pos) -> void:
 	var instance = block.instantiate()
@@ -160,15 +164,39 @@ func _on_prestige_pressed() -> void:
 	Global.plonks = 0
 	Global.prestige += 1
 	Global.boons += boons
+	
 	var children = get_children()
 	for child in children:
 		child.free()
+	
 	genBox(32, 24, Vector2(50, 50))
 	for i in reinforce:
 		genBox(32 - (i * 2), 24 - (i * 2), Vector2(50, 50) + i * Vector2(20, 20))
+	
+	if Global.active.has("Plonky"):
+		var instance = plonky.instantiate()
+		instance.position = Vector2(200, 200)
+		add_child(instance)
+	
 	prestige.emit()
 
 func _on_boon_deck_add_boon(b: Variant) -> void:
-	if b == "Reinforce":
-		reinforce += 1
-		genBox(32 - (reinforce * 2), 24 - (reinforce * 2), Vector2(50, 50) + reinforce * Vector2(20, 20))
+	match b:
+		"Reinforce":
+			reinforce += 1
+			genBox(32 - (reinforce * 2), 24 - (reinforce * 2), Vector2(50, 50) + reinforce * Vector2(20, 20))
+		"Multchance":
+			Global.critRate += 0.12
+		"Scaleballs":
+			for i in get_child_count():
+				get_child(i).scaler *= 1.1
+			Global.plonkiScale *= 1.1
+		"Spincellerate":
+			Global.spin += 0.008
+		"Plonky":
+			var instance = plonky.instantiate()
+			instance.position = Vector2(200, 200)
+			add_child(instance)
+			plonkyDia.emit()
+			
+			

@@ -17,7 +17,7 @@ func _ready() -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall4.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = true
 	
-	$BoonDeck.visible = false
+	$BoonSelection.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -115,7 +115,7 @@ func loadDialogue(d: String, next: int, face: int = 0) -> void:
 	inDialogue = false
 
 func _on_draw_boon_pressed() -> void:
-	$BoonDeck.visible = true
+	$BoonSelection.visible = true
 
 func _on_objects_prestige() -> void:
 	if Global.prestige == 1:
@@ -125,6 +125,9 @@ func _on_objects_prestige() -> void:
 		loadDialogue("Another day, another prestige!
 		Here's ur plot!", -2)
 		Global.plonks += 1
+
+func _on_objects_plonky_dia() -> void:
+	loadDialogue("OMG u drew the 1 of a kind special boon!", 150, 2)
 
 func _on_dialogue_box_pressed() -> void:
 	match dialogue:
@@ -180,3 +183,12 @@ func _on_dialogue_box_pressed() -> void:
 			loadDialogue("U can use tokenz to draw permanent boon cards to help u on ur next land!", 104)
 		104:
 			loadDialogue("Okie, glhf! Im outta here!", -2, 3)
+		
+		150:
+			loadDialogue("I was hoping u wouldnt draw this 1 ngl...", 151, 1)
+		151:
+			loadDialogue("But ig u deserve it for all ur help", 152)
+		152:
+			loadDialogue("From now on i will help u on ur land", 153)
+		153:
+			loadDialogue("Use wasd 2 command me around!", -2)

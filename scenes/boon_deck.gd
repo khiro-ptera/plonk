@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 			Global.active.append(c.boonName)
 			addBoon.emit(c.boonName)
 			c.scaler = 0.4
-			c.reparent($"../VBoxContainer2/HBoxContainer/BoonBox/MarginContainer2/ActiveBoons")
+			c.reparent($"../Boons/ActiveBoons", false)
 			for j in get_child_count():
 				get_child(j).queue_free()
 			break
@@ -39,14 +39,15 @@ func _on_draw_boon_pressed() -> void:
 	var selected = randi() % decksize
 	# nCard.scale *= scaler
 	nCard.boonName = deck.cards[selected]
+	deck.cards.erase(nCard.boonName)
 	$".".add_child(nCard)
-	
 	nCard.state = Drawn
 	
 	var nCard2 = card.instantiate()
-	var selected2 = randi() % decksize
+	var selected2 = randi() % (decksize - 1)
 	# nCard2.scale *= scaler
 	nCard2.boonName = deck.cards[selected2]
 	$".".add_child(nCard2)
-	
 	nCard2.state = Drawn
+	
+	deck.cards.append(nCard.boonName)

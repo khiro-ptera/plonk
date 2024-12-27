@@ -1,6 +1,6 @@
-extends Container
+extends Area2D
 
-var card = preload("res://scenes/boon_card.tscn")
+var _contacted = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,10 +9,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	for i in get_child_count():
-		var c = get_child(i)
-		c.position.y = 20 * i
-
-
-func _on_boon_deck_add_boon(b: Variant) -> void:
 	pass
+
+
+func _on_area_entered(other) -> void:
+	_contacted = other
+	_contacted.linear_velocity += Vector2(randi_range(-15, 15), randi_range(-15, 15))
