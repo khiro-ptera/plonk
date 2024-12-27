@@ -8,6 +8,7 @@ var wave = preload("res://scenes/wave.tscn")
 var hitframes = 0
 var cd = INF
 var timed = INF
+var bonus = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -50,6 +51,11 @@ func _physics_process(delta: float) -> void:
 				slowdown()
 			if abs(linear_velocity.x) + abs(linear_velocity.y) < 10:
 				linear_velocity = Vector2(250, 250).rotated(randf_range(-3.14, 3.14))
+		elif type == 6:
+			linear_damp = 0.2
+			bonus = randi_range(10, 30)
+		elif type == 7:
+			angular_damp = 2.5
 	
 	# angular_velocity += Global.spin/10
 	if abs(angular_velocity) > 0.05:
@@ -85,11 +91,17 @@ func _on_body_entered(body: Node) -> void:
 			# call_deferred("add_child", iwave)
 			# add_child(iwave)
 	if randf_range(0.000, 1.000) <= Global.critRate:
-		Global.plonks += Global.plonkGain * Global.plonkMult * Global.critMult
+		Global.plonks += (Global.plonkGain + bonus) * Global.plonkMult * Global.critMult
 		$Bounce2.play()
 	else:
-		Global.plonks += Global.plonkGain * Global.plonkMult
+		Global.plonks += (Global.plonkGain + bonus) * Global.plonkMult
 		$Bounce1.play()
+	if type == 7: # quantus warp
+		Global.plonks += randi_range(-33, 66)
+		if randi_range(1, 7) == 1:
+			angular_velocity = randf_range(-2.0, 2.0)
+			position = Vector2(randi_range(125, 650), randi_range(125, 450)) # please dont break the game...
+			$Warp1.play()
 	Global.totalCollisions += 1
 	hitframes = 15
 	$AnimatedSprite2D.play(str(type) + "_hit")

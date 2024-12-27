@@ -1,6 +1,6 @@
 extends MarginContainer
 
-var ballCounts = [0, 0, 0, 0, 0, 0]
+var ballCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	$HBoxContainer/Menu/CritMult.text = "Crit Multiplier " + str(Global.critMult)
 	$HBoxContainer/Menu/SizeMult.text = "Size Multiplier " + str(Global.plonkiScale)
 	$HBoxContainer/Menu/Spin.text = "Spin " + str(Global.spin)
+	$HBoxContainer/Menu/Prestiges.text = "Times Prestiged " + str(Global.prestige)
 
 func _on_objects_add_ball(b: int) -> void:
 	ballCounts[b] += 1
@@ -30,6 +31,8 @@ func updateCounts() -> void:
 	$HBoxContainer/Menu/Ball2.text = "Stonki " + str(ballCounts[2])
 	$HBoxContainer/Menu/Ball3.text = "Gronki " + str(ballCounts[3])
 	$HBoxContainer/Menu/Ball5.text = "Comets " + str(ballCounts[5])
+	$HBoxContainer/Menu/Ball6.text = "Slothi " + str(ballCounts[6])
+	$HBoxContainer/Menu/Ball7.text = "Quanti " + str(ballCounts[7])
 
 func _on_texture_button_pressed() -> void:
 	get_parent().visible = false

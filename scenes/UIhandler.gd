@@ -16,7 +16,8 @@ func _ready() -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall3.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall4.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = true
-	
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall6.disabled = true
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall7.disabled = true
 	$BoonSelection.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,8 +42,12 @@ func _process(delta: float) -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall4/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall4.size
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall5/Label.text = "Comet " + str(Global.cometCost)
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall5/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall5.size
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall6/Label.text = "Slothus " + str(Global.slothCost)
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall6/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall6.size
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall7/Label.text = "Quantus " + str(Global.quantCost)
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall7/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall7.size
 	
-	if Global.bbUnlock == false:
+	if !Global.bbUnlock:
 		if Global.plonks > 9 && !inDialogue:
 			Global.bbUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall2.disabled = false
@@ -52,7 +57,7 @@ func _process(delta: float) -> void:
 		else:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall2/Label.text = "???"
 		
-	if Global.starUnlock == false:
+	if !Global.starUnlock:
 		if Global.totalCollisions > 124 && !inDialogue:
 			Global.starUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall3.disabled = false
@@ -60,7 +65,7 @@ func _process(delta: float) -> void:
 		else:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall3/Label.text = "???"
 		
-	if Global.gravUnlock == false:
+	if !Global.gravUnlock:
 		if Global.totalLV > 1960 && !inDialogue:
 			Global.gravUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall4.disabled = false
@@ -68,7 +73,7 @@ func _process(delta: float) -> void:
 		else:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall4/Label.text = "???"
 		
-	if Global.cometUnlock == false:
+	if !Global.cometUnlock:
 		if Global.plonks > 4999 && !inDialogue:
 			Global.cometUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = false
@@ -76,6 +81,18 @@ func _process(delta: float) -> void:
 			They go slow... then they go fast! Give em a shot!", -2)
 		else:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall5/Label.text = "???"
+	
+	if !Global.slothUnlock:
+		$VBoxContainer2/HBoxContainer/ShopBox/AddBall6/Label.text = "???"
+		
+	if !Global.quantUnlock:
+		if Global.totalLV > 3333 && Global.totalAV > 55.55 && Global.prestige > 0 && !inDialogue:
+			Global.quantUnlock = true
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall7.disabled = false
+			loadDialogue("Hold on, i just got a call from dr.quant, 
+			Plonkworld's most renowned physicist.", 175, 2)
+		else:
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall7/Label.text = "???"
 	
 	# boon/shop artifacts
 	$VBoxContainer2/HBoxContainer/BoonBox/Label.size.x = $VBoxContainer2/HBoxContainer/BoonBox.size.x
@@ -120,6 +137,9 @@ func _on_draw_boon_pressed() -> void:
 func _on_objects_prestige() -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall.disabled = false
 	if Global.prestige == 1:
+		if !Global.slothUnlock:
+			Global.slothUnlock = true
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall6.disabled = false
 		loadDialogue("Heya, I c uve prestiged! Gratz!", 100)
 		Global.plonks += 1
 	else: 
@@ -183,13 +203,39 @@ func _on_dialogue_box_pressed() -> void:
 		103:
 			loadDialogue("U can use tokenz 2 draw permanent boon cards 2 help u on ur next land!", 104)
 		104:
-			loadDialogue("Okie, glhf! Im outta here!", -2, 3)
+			loadDialogue("Ive also unlocked the sloth plonkus 4 u.", 105)
+		105:
+			loadDialogue("Slothus 4 short. They give HUGE plonk bonuses!", 106, 1)
+		106:
+			loadDialogue("BUT b careful! They will drag ur other plonks down!", 107, 1)
+		107:
+			if Global.active.has("Plonky"):
+				loadDialogue("Okie, letz get 2 work!", -2, 3)
+			else:
+				loadDialogue("Okie, glhf! Im outta here!", -2, 3)
 		
 		150:
 			loadDialogue("I was hoping u wouldnt draw this 1 ngl...", 151, 1)
 		151:
-			loadDialogue("But ig u deserve it for all ur help", 152)
+			loadDialogue("But ig u deserve it for all ur help.", 152)
 		152:
-			loadDialogue("From now on i will help u on ur land", 153)
+			loadDialogue("From now on i will help u on ur land.", 153)
 		153:
 			loadDialogue("Use wasd 2 command me around!", -2)
+		
+		175:
+			loadDialogue("He said he finally got his cloning machine 2 work!", 176, 2)
+		176:
+			loadDialogue("Well, it can only clone himself rn...", 177, 1)
+		177:
+			loadDialogue("He says i can use his clones to plonk!", 178, 3)
+		178:
+			loadDialogue("But um... Im not 2 sure how well they work... 
+			What if theres some catastrophic malfunction?", 180, 1)
+		180:
+			loadDialogue("How bout i let u test them first!", 181, 3)
+		181:
+			loadDialogue("Hrm? Wdym? Whats a \"ginney pig?\" 
+			No, ur just my assistant, ofc.", 182, 1)
+		182:
+			loadDialogue("I wud never put u in danger, trust me!", -2, 3)

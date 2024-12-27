@@ -124,6 +124,8 @@ vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, posi
 		instance.scaler = Global.plonkiScale * 0.9
 	elif type == 5:
 		instance.scaler = Global.plonkiScale * 0.9
+	elif type == 6:
+		instance.scaler = Global.plonkiScale * 2.0
 
 func addBlock(pos) -> void:
 	var instance = block.instantiate()
@@ -160,6 +162,18 @@ func _on_add_ball_5_pressed() -> void:
 		Global.cometCost *= 11
 		spawnBall(5)
 
+func _on_add_ball_6_pressed() -> void:
+	if Global.plonks >= Global.slothCost:
+		Global.plonks -= Global.slothCost
+		Global.slothCost *= 13
+		spawnBall(6)
+
+func _on_add_ball_7_pressed() -> void:
+	if Global.plonks >= Global.quantCost:
+		Global.plonks -= Global.quantCost
+		Global.quantCost *= randi_range(14, 16)
+		spawnBall(7)
+
 func _on_prestige_pressed() -> void:
 	var boons = int(Global.plonks / 10000)
 	Global.plonks = 0
@@ -179,6 +193,7 @@ func _on_prestige_pressed() -> void:
 		instance.position = Vector2(200, 200)
 		add_child(instance)
 	
+	Global.resetPrices()
 	prestige.emit()
 
 func _on_boon_deck_add_boon(b: Variant) -> void:
@@ -199,5 +214,3 @@ func _on_boon_deck_add_boon(b: Variant) -> void:
 			instance.position = Vector2(200, 200)
 			add_child(instance)
 			plonkyDia.emit()
-			
-			
