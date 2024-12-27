@@ -551,6 +551,6 @@ autoplay = true
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/Prestige" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_prestige_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/BoonBox/DrawBoon" to="Main" method="_on_draw_boon_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/BoonBox/DrawBoon" to="Main/BoonDeck" method="_on_draw_boon_pressed"]
-[connection signal="addBoon" from="Main/BoonDeck" to="Main/VBoxContainer2/HBoxContainer/BoonBox/MarginContainer2/ActiveBoons" method="_on_boon_deck_add_boon"]
+[connection signal="addBoon" from="Main/BoonDeck" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_boon_deck_add_boon"]
 [connection signal="pressed" from="Main/DialogueBox" to="Main" method="_on_dialogue_box_pressed"]
 [connection signal="pressed" from="StatsLayer/StatsMenu/TextureButton" to="StatsLayer/StatsMenu" method="_on_texture_button_pressed"]

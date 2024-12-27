@@ -8,6 +8,8 @@ const maxEventcd = 60.0
 
 var eventChance = 50000 # 1000delta/eventChance is actual chance of event after max cd is over
 
+var reinforce = 0
+
 signal event(e)
 signal addBall(b)
 signal prestige()
@@ -15,7 +17,7 @@ signal prestige()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	genBox(32, 24, Vector2(50, 50))
-	Global.plonks = 10000
+	# Global.plonks = 100000
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -162,4 +164,11 @@ func _on_prestige_pressed() -> void:
 	for child in children:
 		child.free()
 	genBox(32, 24, Vector2(50, 50))
+	for i in reinforce:
+		genBox(32 - (i * 2), 24 - (i * 2), Vector2(50, 50) + i * Vector2(20, 20))
 	prestige.emit()
+
+func _on_boon_deck_add_boon(b: Variant) -> void:
+	if b == "Reinforce":
+		reinforce += 1
+		genBox(32 - (reinforce * 2), 24 - (reinforce * 2), Vector2(50, 50) + reinforce * Vector2(20, 20))

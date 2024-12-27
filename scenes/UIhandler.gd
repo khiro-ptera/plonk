@@ -116,7 +116,6 @@ func loadDialogue(d: String, next: int, face: int = 0) -> void:
 
 func _on_draw_boon_pressed() -> void:
 	$BoonDeck.visible = true
-	
 
 func _on_objects_prestige() -> void:
 	if Global.prestige == 1:

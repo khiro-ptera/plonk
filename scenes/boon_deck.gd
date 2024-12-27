@@ -18,11 +18,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	decksize = deck.cards.size()
 	for i in get_child_count():
 		if get_child(i).state == Active:
 			var c = get_child(i)
 			visible = false
+			deck.cards.erase(c.boonName)
 			Global.active.append(c.boonName)
+			addBoon.emit(c.boonName)
 			c.scaler = 0.4
 			c.reparent($"../VBoxContainer2/HBoxContainer/BoonBox/MarginContainer2/ActiveBoons")
 			for j in get_child_count():

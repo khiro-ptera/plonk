@@ -9,7 +9,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	for i in get_child_count():
+		var c = get_child(i)
+		c.position.y = 20 * i
 
 
 func _on_boon_deck_add_boon(b: Variant) -> void:
