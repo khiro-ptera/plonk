@@ -33,21 +33,22 @@ func _process(delta: float) -> void:
 			break
 
 func _on_draw_boon_pressed() -> void:
-	Global.boons -= 1
-	
-	var nCard = card.instantiate()
-	var selected = randi() % decksize
-	# nCard.scale *= scaler
-	nCard.boonName = deck.cards[selected]
-	deck.cards.erase(nCard.boonName)
-	$".".add_child(nCard)
-	nCard.state = Drawn
-	
-	var nCard2 = card.instantiate()
-	var selected2 = randi() % (decksize - 1)
-	# nCard2.scale *= scaler
-	nCard2.boonName = deck.cards[selected2]
-	$".".add_child(nCard2)
-	nCard2.state = Drawn
-	
-	deck.cards.append(nCard.boonName)
+	if decksize > 1:
+		Global.boons -= 1
+		
+		var nCard = card.instantiate()
+		var selected = randi() % decksize
+		# nCard.scale *= scaler
+		nCard.boonName = deck.cards[selected]
+		deck.cards.erase(nCard.boonName)
+		$".".add_child(nCard)
+		nCard.state = Drawn
+		
+		var nCard2 = card.instantiate()
+		var selected2 = randi() % (decksize - 1)
+		# nCard2.scale *= scaler
+		nCard2.boonName = deck.cards[selected2]
+		$".".add_child(nCard2)
+		nCard2.state = Drawn
+		
+		deck.cards.append(nCard.boonName)

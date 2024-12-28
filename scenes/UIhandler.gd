@@ -3,6 +3,7 @@ extends MarginContainer
 var dialogue = 0
 var inDialogue = false
 var dialogueFace = 0
+var shopPage = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,6 +47,13 @@ func _process(delta: float) -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall6/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall6.size
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall7/Label.text = "Quantus " + str(Global.quantCost)
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall7/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall7.size
+	
+	if shopPage == 1:
+		get_tree().call_group("shop1", "show")
+		get_tree().call_group("shop2", "hide")
+	elif shopPage == 2:
+		get_tree().call_group("shop2", "show")
+		get_tree().call_group("shop1", "hide")
 	
 	if !Global.bbUnlock:
 		if Global.plonks > 9 && !inDialogue:
@@ -117,6 +125,11 @@ func _process(delta: float) -> void:
 		$DialogueBox/Sprite2D.position.y = -120
 		$DialogueBox/Sprite2D/DialogueChar.play(str(dialogueFace))
 		$DialogueBox.show()
+
+func _on_next_page_pressed() -> void:
+	shopPage += 1
+	if shopPage == 3: # max shop page + 1
+		shopPage = 1
 
 func loadDialogue(d: String, next: int, face: int = 0) -> void:
 	$DialogueBox.disabled = true
@@ -205,7 +218,7 @@ func _on_dialogue_box_pressed() -> void:
 		104:
 			loadDialogue("Ive also unlocked the sloth plonkus 4 u.", 105)
 		105:
-			loadDialogue("Slothus 4 short. They give HUGE plonk bonuses!", 106, 1)
+			loadDialogue("Slothus 4 short. They give HUGE plonk bonuses!", 106, 2)
 		106:
 			loadDialogue("BUT b careful! They will drag ur other plonks down!", 107, 1)
 		107:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://wkodf4v7lfy8"]
+[gd_scene load_steps=54 format=3 uid="uid://wkodf4v7lfy8"]
 
 [ext_resource type="Script" path="res://scenes/setup.gd" id="1_i7nya"]
 [ext_resource type="Script" path="res://scenes/background.gd" id="1_jgpkw"]
@@ -11,6 +11,7 @@
 [ext_resource type="LabelSettings" uid="uid://unaly7vgkllc" path="res://assets/dlogfont.tres" id="10_7vcbv"]
 [ext_resource type="Script" path="res://scenes/prestige.gd" id="11_8ustm"]
 [ext_resource type="Texture2D" uid="uid://bl7qvknbvd83m" path="res://assets/dbox2.png" id="11_87yb3"]
+[ext_resource type="Texture2D" uid="uid://381cfhoennb" path="res://assets/button5.png" id="11_gpohs"]
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="11_sc4nv"]
 [ext_resource type="Texture2D" uid="uid://c124uteyxo4u0" path="res://assets/faceplonk.png" id="11_td0sp"]
 [ext_resource type="Texture2D" uid="uid://bu4j4onj5r571" path="res://assets/button3.png" id="11_ylka4"]
@@ -30,10 +31,19 @@
 [ext_resource type="Texture2D" uid="uid://bil2ck2gwt6bo" path="res://assets/faceplonk4.png" id="21_wuxgg"]
 [ext_resource type="Texture2D" uid="uid://c8npy8mf1h6bh" path="res://assets/faceplonk4a.png" id="22_d2wfk"]
 [ext_resource type="Texture2D" uid="uid://p6yhmxsyp5yv" path="res://assets/faceplonk4b.png" id="23_8qn07"]
+[ext_resource type="Texture2D" uid="uid://dktdm4e356hj3" path="res://assets/face28.png" id="23_75nvc"]
+[ext_resource type="Texture2D" uid="uid://bgpn5tymg48uu" path="res://assets/face28a.png" id="24_rf3m7"]
+[ext_resource type="Texture2D" uid="uid://y5vjj5g3blc1" path="res://assets/face28b.png" id="25_o0en3"]
+[ext_resource type="Texture2D" uid="uid://cqr1mbegi0g63" path="res://assets/face30a.png" id="26_eqlcx"]
 [ext_resource type="Script" path="res://scenes/boon_deck.gd" id="26_uisgr"]
 [ext_resource type="Texture2D" uid="uid://ch4fmgql4euvg" path="res://assets/cardback1.png" id="27_pa6ba"]
+[ext_resource type="Texture2D" uid="uid://71jk4s5o8qjj" path="res://assets/face30.png" id="27_tde3b"]
+[ext_resource type="Texture2D" uid="uid://dsqvjc7it3wh1" path="res://assets/face30b.png" id="28_xpaut"]
+[ext_resource type="Texture2D" uid="uid://dop7775dt6bwy" path="res://assets/face29.png" id="29_1wot7"]
+[ext_resource type="Texture2D" uid="uid://dbylgwqqyxg7" path="res://assets/face29a.png" id="30_fg7hi"]
 [ext_resource type="Script" path="res://scenes/audio_handler.gd" id="30_ogrux"]
 [ext_resource type="AudioStream" uid="uid://dbk4fhygt0umk" path="res://assets/test1_1.wav" id="31_2awm3"]
+[ext_resource type="Texture2D" uid="uid://bbq78kjpjhld8" path="res://assets/face29b.png" id="31_d3upq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nfiy4"]
 font_size = 32
@@ -51,6 +61,9 @@ font_size = 32
 font_color = Color(3.36915e-07, 0.434287, 0.406051, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t6l4c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lufg4"]
+font_color = Color(0.080787, 0.155436, 0.065167, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kvn6i"]
 font_color = Color(0, 0.861297, 0.0136738, 1)
@@ -85,6 +98,48 @@ animations = [{
 }],
 "loop": true,
 "name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_75nvc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_rf3m7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_o0en3")
+}],
+"loop": true,
+"name": &"10",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_eqlcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_tde3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_xpaut")
+}],
+"loop": true,
+"name": &"11",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_1wot7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_fg7hi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_d3upq")
+}],
+"loop": true,
+"name": &"12",
 "speed": 5.0
 }, {
 "frames": [{
@@ -254,7 +309,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="AddBall" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
+[node name="AddBall" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop1"]]
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
@@ -269,11 +324,27 @@ label_settings = SubResource("LabelSettings_t6l4c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AddBall8" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop2"]]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("4_p3gc2")
+texture_pressed = ExtResource("5_dj83m")
+texture_disabled = ExtResource("11_ylka4")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall8"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 50.0
+label_settings = SubResource("LabelSettings_t6l4c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer2" type="MarginContainer" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="AddBall2" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
+[node name="AddBall2" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop1"]]
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
@@ -292,7 +363,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="AddBall3" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
+[node name="AddBall3" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop1"]]
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
@@ -311,7 +382,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="AddBall4" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
+[node name="AddBall4" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop1"]]
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
@@ -330,7 +401,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="AddBall5" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
+[node name="AddBall5" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop1"]]
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
@@ -349,7 +420,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="AddBall6" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
+[node name="AddBall6" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop1"]]
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
@@ -368,7 +439,7 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="AddBall7" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
+[node name="AddBall7" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop1"]]
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
@@ -380,6 +451,25 @@ layout_mode = 0
 offset_right = 100.0
 offset_bottom = 50.0
 label_settings = SubResource("LabelSettings_t6l4c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer8" type="MarginContainer" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="NextPage" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("11_gpohs")
+
+[node name="Label" type="Label" parent="Main/VBoxContainer2/HBoxContainer/ShopBox/NextPage"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Next"
+label_settings = SubResource("LabelSettings_lufg4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -475,7 +565,7 @@ centered = false
 
 [node name="DialogueChar" type="AnimatedSprite2D" parent="Main/DialogueBox/Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_otspk")
-animation = &"0"
+animation = &"2"
 centered = false
 
 [node name="StatsLayer" type="CanvasLayer" parent="."]
@@ -642,6 +732,7 @@ autoplay = true
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall5" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_5_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall6" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_6_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall7" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_7_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/NextPage" to="Main" method="_on_next_page_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/BoonBox/Prestige" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_prestige_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/BoonBox/DrawBoon" to="Main" method="_on_draw_boon_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/BoonBox/DrawBoon" to="Main/BoonSelection" method="_on_draw_boon_pressed"]
