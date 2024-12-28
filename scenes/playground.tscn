@@ -565,7 +565,7 @@ centered = false
 
 [node name="DialogueChar" type="AnimatedSprite2D" parent="Main/DialogueBox/Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_otspk")
-animation = &"2"
+animation = &"10"
 centered = false
 
 [node name="StatsLayer" type="CanvasLayer" parent="."]
@@ -726,6 +726,7 @@ autoplay = true
 [connection signal="plonkyDia" from="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="Main" method="_on_objects_plonky_dia"]
 [connection signal="prestige" from="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" to="Main" method="_on_objects_prestige"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall8" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_8_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall2" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_2_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall3" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_3_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall4" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_4_pressed"]

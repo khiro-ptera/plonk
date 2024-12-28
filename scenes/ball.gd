@@ -34,9 +34,16 @@ func _physics_process(delta: float) -> void:
 		if abs(angular_velocity) > 0.05:
 			angular_velocity *= 1 + (0.01 / abs(angular_velocity))
 		$AnimatedSprite2D.rotate(-1 * angular_velocity / 90)
+	elif type == 8:
+		$BallSprite.hide()
+		$StarSprite.hide()
+		$Scribball.show()
+		$Scribball.play("default")
+		$Scribball.rotate(0.3)
 	else:
 		$BallSprite.show()
 		$StarSprite.hide()
+		$Scribball.hide()
 		$CollisionPolygonStar.disabled = true
 		$CollisionShapeBall.disabled = false
 		
@@ -102,6 +109,13 @@ func _on_body_entered(body: Node) -> void:
 			angular_velocity = randf_range(-2.0, 2.0)
 			position = Vector2(randi_range(125, 650), randi_range(125, 450)) # please dont break the game...
 			$Warp1.play()
+	elif type == 8:
+		scaler += randf_range(-0.3, 0.3)
+		if scaler > 0.75:
+			scaler = 0.75
+		elif scaler < 0.05:
+			scaler = 0.05
+		Global.plonks += int(scaler * 100)
 	Global.totalCollisions += 1
 	hitframes = 15
 	$AnimatedSprite2D.play(str(type) + "_hit")

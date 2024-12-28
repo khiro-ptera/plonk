@@ -47,6 +47,8 @@ func _process(delta: float) -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall6/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall6.size
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall7/Label.text = "Quantus " + str(Global.quantCost)
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall7/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall7.size
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall8/Label.text = "Scriball " + str(Global.scribCost)
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall8/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall8.size
 	
 	if shopPage == 1:
 		get_tree().call_group("shop1", "show")
@@ -101,6 +103,15 @@ func _process(delta: float) -> void:
 			Plonkworld's most renowned physicist.", 175, 2)
 		else:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall7/Label.text = "???"
+		
+	if !Global.scribUnlock:
+		if Global.active.size() >= 2 && !inDialogue:
+			Global.scribUnlock = true
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall8.disabled = false
+			loadDialogue("HELLO THERE! It has come to my attention that YOU
+			have unlocked TWO whole boons!", 200, 12)
+		else:
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall8/Label.text = "???"
 	
 	# boon/shop artifacts
 	$VBoxContainer2/HBoxContainer/BoonBox/Label.size.x = $VBoxContainer2/HBoxContainer/BoonBox.size.x
@@ -124,6 +135,10 @@ func _process(delta: float) -> void:
 	else:
 		$DialogueBox/Sprite2D.position.y = -120
 		$DialogueBox/Sprite2D/DialogueChar.play(str(dialogueFace))
+		if dialogueFace >= 10 && dialogueFace <20:
+			$DialogueBox/Sprite2D/DialogueChar.offset.y = -100
+		else:
+			$DialogueBox/Sprite2D/DialogueChar.offset.y = 0
 		$DialogueBox.show()
 
 func _on_next_page_pressed() -> void:
@@ -252,3 +267,30 @@ func _on_dialogue_box_pressed() -> void:
 			No, ur just my assistant, ofc.", 182, 1)
 		182:
 			loadDialogue("I wud never put u in danger, trust me!", -2, 3)
+		
+		200:
+			loadDialogue("Ah, my apologies! I have not introduced myself yet!", 201, 10)
+		201:
+			loadDialogue("I am DOCTOR Quant Quonkus! Professor of BIOCHEMISTRY, PSYCHOLOGY,
+			QUANTUM PHYSICS, MATERIAL SCIENCES, MECHANICAL ENGINEERING, HISTORY,", 202, 12)
+		202:
+			loadDialogue("STATISTICS, LITERATURE, MARine biology, *pant* park management, 
+			finance, plonkonomics, art history, and linguistics at Plonktech University. *pant*", 203, 11)
+		203:
+			loadDialogue("Huh? You already know me?", 204, 10)
+		204:
+			loadDialogue("EGADS! I see you have employed my likeness onto your plonkosystem!", 205, 12)
+		205:
+			loadDialogue("Well, anywho! I'm here in the mayor's stead at his behest.", 206, 10)
+		206:
+			loadDialogue("I must inform you that you can now utilize my NEWEST creation!", 207, 12)
+		207:
+			loadDialogue("BEHOLD! The SCRIBALL!", 208, 12)
+		208:
+			loadDialogue("I've engineered this synthetic plonkus with the science of SIZOLOGY!
+			Not only will its size change with every plonk...", 209, 12)
+		209:
+			loadDialogue("But it will ALSO grant additional plonks based on its size!
+			Give it a try! I'll be off now!", 210, 12)
+		210:
+			loadDialogue("Goodbye! Ciao! 再见! Kwaheri! ;D o7!", -2, 12)

@@ -19,9 +19,9 @@ signal plonkyDia()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	genBox(32, 24, Vector2(50, 50))
-	# Global.boons = 10
-	# Global.prestige = 1
-	# Global.plonks = 10000
+	Global.boons = 10
+	Global.prestige = 1
+	Global.plonks = 10000
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -173,6 +173,12 @@ func _on_add_ball_7_pressed() -> void:
 		Global.plonks -= Global.quantCost
 		Global.quantCost *= randi_range(14, 16)
 		spawnBall(7)
+
+func _on_add_ball_8_pressed() -> void:
+	if Global.plonks >= Global.scribCost:
+		Global.plonks -= Global.scribCost
+		Global.scribCost *= 20
+		spawnBall(8)
 
 func _on_prestige_pressed() -> void:
 	var boons = int(Global.plonks / 10000)

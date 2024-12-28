@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://crdygc5xl36pf"]
+[gd_scene load_steps=99 format=3 uid="uid://crdygc5xl36pf"]
 
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="1_0kl4m"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_s3pyh"]
@@ -6,9 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://cvu1gfttboxyt" path="res://assets/face5.png" id="3_cm3qx"]
 [ext_resource type="Texture2D" uid="uid://b4datstv3wgk3" path="res://assets/star1.png" id="3_tlswg"]
 [ext_resource type="Texture2D" uid="uid://b4k3cmdt4llkw" path="res://assets/face1a.png" id="4_ab5bp"]
+[ext_resource type="Texture2D" uid="uid://d3gslip2vuegt" path="res://assets/ball2.png" id="4_jcy60"]
 [ext_resource type="Texture2D" uid="uid://bndauo3ufip3i" path="res://assets/face5a.png" id="4_tnso8"]
 [ext_resource type="Texture2D" uid="uid://biy8rd4ho2ah7" path="res://assets/face1b.png" id="5_27acb"]
+[ext_resource type="Texture2D" uid="uid://dhr8wu8teomqv" path="res://assets/ball2a.png" id="5_afsfl"]
 [ext_resource type="Texture2D" uid="uid://cu2qvnmukwhg6" path="res://assets/face5b.png" id="5_lcpmi"]
+[ext_resource type="Texture2D" uid="uid://548824gbk2ut" path="res://assets/ball2b.png" id="6_8r7bl"]
 [ext_resource type="Texture2D" uid="uid://blm1ntfbk7u41" path="res://assets/face2.png" id="6_76u47"]
 [ext_resource type="Texture2D" uid="uid://bkxk0106ghved" path="res://assets/face4.png" id="7_8igel"]
 [ext_resource type="Texture2D" uid="uid://dmi61ixa8t8uj" path="res://assets/face3.png" id="8_paeyk"]
@@ -94,6 +97,23 @@
 resource_local_to_scene = true
 friction = 0.0
 bounce = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jamq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jcy60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_afsfl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8r7bl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_my1uc"]
 radius = 50.01
@@ -541,6 +561,10 @@ texture = ExtResource("1_0kl4m")
 [node name="StarSprite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("3_tlswg")
+
+[node name="Scribball" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_7jamq")
 
 [node name="CollisionShapeBall" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_my1uc")

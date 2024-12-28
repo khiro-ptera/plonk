@@ -11,6 +11,7 @@ var gravUnlock = false
 var cometUnlock = false
 var slothUnlock = false
 var quantUnlock = false
+var scribUnlock = false
 
 # costs
 var ballCost = 1
@@ -20,6 +21,7 @@ var gravCost = 98
 var cometCost = 500
 var slothCost = 999
 var quantCost = randi_range(1000, 1200)
+var scribCost = 2002
 
 # modifiers
 var plonkGain = 1
@@ -52,4 +54,5 @@ func resetPrices() -> void:
 	cometCost = 500
 	slothCost = 999
 	quantCost = randi_range(1000, 1200)
+	scribCost = 2002
 	
