@@ -19,9 +19,11 @@ signal plonkyDia()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	genBox(32, 24, Vector2(50, 50))
-	Global.boons = 10
-	Global.prestige = 1
-	Global.plonks = 10000
+	
+	# Test Zone!
+	# Global.boons = 10
+	# Global.prestige = 1
+	# Global.plonks = 10000
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

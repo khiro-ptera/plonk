@@ -1,5 +1,5 @@
 static var cards = [
-	"Shockwave",
+	# "Shockwave",
 	"Spincellerate", 
 	"Spincellerate", 
 	"Reinforce", 

@@ -63,6 +63,7 @@ font_color = Color(3.36915e-07, 0.434287, 0.406051, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_t6l4c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lufg4"]
+font_size = 12
 font_color = Color(0.080787, 0.155436, 0.065167, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kvn6i"]
@@ -465,9 +466,14 @@ size_flags_vertical = 4
 texture_normal = ExtResource("11_gpohs")
 
 [node name="Label" type="Label" parent="Main/VBoxContainer2/HBoxContainer/ShopBox/NextPage"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 11.5
+grow_vertical = 2
 text = "Next"
 label_settings = SubResource("LabelSettings_lufg4")
 horizontal_alignment = 1
@@ -565,7 +571,7 @@ centered = false
 
 [node name="DialogueChar" type="AnimatedSprite2D" parent="Main/DialogueBox/Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_otspk")
-animation = &"10"
+animation = &"0"
 centered = false
 
 [node name="StatsLayer" type="CanvasLayer" parent="."]
@@ -644,6 +650,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Ball7" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
+layout_mode = 2
+label_settings = ExtResource("14_r7ti2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ball8" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
 layout_mode = 2
 label_settings = ExtResource("14_r7ti2")
 horizontal_alignment = 1

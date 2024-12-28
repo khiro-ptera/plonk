@@ -133,3 +133,8 @@ func shockwave() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	linear_velocity += Vector2(randi_range(-15, 15), randi_range(-15, 15))
 	angular_velocity += randf_range(-0.5, 0.5)
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	linear_velocity = Vector2(0, 0)
+	position = Vector2(randi_range(125, 650), randi_range(125, 450))

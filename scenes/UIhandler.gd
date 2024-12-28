@@ -19,6 +19,7 @@ func _ready() -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall6.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall7.disabled = true
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall8.disabled = true
 	$BoonSelection.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -105,7 +106,7 @@ func _process(delta: float) -> void:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall7/Label.text = "???"
 		
 	if !Global.scribUnlock:
-		if Global.active.size() >= 2 && !inDialogue:
+		if Global.active.size() >= 2 && Global.quantUnlock && !inDialogue:
 			Global.scribUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall8.disabled = false
 			loadDialogue("HELLO THERE! It has come to my attention that YOU
