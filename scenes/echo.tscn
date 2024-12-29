@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://j1bxh4kl55qs"]
+
+[ext_resource type="Texture2D" uid="uid://dyn0l2k2lisd8" path="res://assets/echo1.png" id="1_k5x3c"]
+[ext_resource type="Texture2D" uid="uid://dsy1ng1qo86xc" path="res://assets/echo1a.png" id="2_53mcb"]
+[ext_resource type="Texture2D" uid="uid://d6nea5k0dj54" path="res://assets/echo1b.png" id="3_57xdq"]
+[ext_resource type="Texture2D" uid="uid://ci6sdh4cdlueh" path="res://assets/echo1c.png" id="4_82vnp"]
+[ext_resource type="Texture2D" uid="uid://besibpmpyda1h" path="res://assets/echo1d.png" id="5_qjgpk"]
+[ext_resource type="Script" path="res://echo.gd" id="6_hexux"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dt16b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k5x3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_53mcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_57xdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_82vnp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qjgpk")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}]
+
+[node name="Echo" type="AnimatedSprite2D"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_dt16b")
+animation = &"0"
+script = ExtResource("6_hexux")

@@ -13,6 +13,7 @@ var slothUnlock = false
 var quantUnlock = false
 var scribUnlock = false
 var spookUnlock = false
+var chiroUnlock = false
 
 # costs
 var ballCost = 1
@@ -24,6 +25,7 @@ var slothCost = 999
 var quantCost = randi_range(1000, 1200)
 var scribCost = 2002
 var spookCost = 4040
+var chiroCost = 6666
 
 # modifiers
 var plonkGain = 1
@@ -58,3 +60,4 @@ func resetPrices() -> void:
 	quantCost = randi_range(1000, 1200)
 	scribCost = 2002
 	spookCost = 4040
+	chiroCost = 6666

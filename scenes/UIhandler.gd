@@ -21,6 +21,7 @@ func _ready() -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall7.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall8.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall9.disabled = true
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall10.disabled = true
 	$BoonSelection.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,6 +54,8 @@ func _process(delta: float) -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall8/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall8.size
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall9/Label.text = "Spookus " + str(Global.spookCost)
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall9/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall9.size
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall10/Label.text = "Chirus " + str(Global.chiroCost)
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall10/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall10.size
 	
 	if shopPage == 1:
 		get_tree().call_group("shop1", "show")
@@ -62,7 +65,7 @@ func _process(delta: float) -> void:
 		get_tree().call_group("shop1", "hide")
 	
 	if !Global.bbUnlock:
-		if Global.plonks > 9 && !inDialogue:
+		if Global.plonks > 9 && !inDialogue && dialogue == -1:
 			Global.bbUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall2.disabled = false
 			loadDialogue("I c uve collected 10 plonks! Ill give u the big plonkus license!
@@ -72,7 +75,7 @@ func _process(delta: float) -> void:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall2/Label.text = "???"
 		
 	if !Global.starUnlock:
-		if Global.totalCollisions > 124 && !inDialogue:
+		if Global.totalCollisions > 124 && !inDialogue && dialogue == -1:
 			Global.starUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall3.disabled = false
 			loadDialogue("Uve plonked 125 times! Awesomesauce! I now permit u 2 employ stonki!", 20)
@@ -80,7 +83,7 @@ func _process(delta: float) -> void:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall3/Label.text = "???"
 		
 	if !Global.gravUnlock:
-		if Global.totalLV > 1960 && !inDialogue:
+		if Global.totalLV > 1960 && !inDialogue && dialogue == -1:
 			Global.gravUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall4.disabled = false
 			loadDialogue("Wowzers! Those r sum FAST plonki! I think uve earned the gronkus license!", 25)
@@ -88,7 +91,7 @@ func _process(delta: float) -> void:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall4/Label.text = "???"
 		
 	if !Global.cometUnlock:
-		if Global.plonks > 4999 && !inDialogue:
+		if Global.plonks > 4999 && !inDialogue && dialogue == -1:
 			Global.cometUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall5.disabled = false
 			loadDialogue("4 reaching 5k plonks, i present 2u... Cometz! 
@@ -100,7 +103,7 @@ func _process(delta: float) -> void:
 		$VBoxContainer2/HBoxContainer/ShopBox/AddBall6/Label.text = "???"
 		
 	if !Global.quantUnlock:
-		if Global.totalLV > 3333 && Global.totalAV > 55.55 && Global.prestige > 0 && !inDialogue:
+		if Global.totalLV > 3333 && Global.totalAV > 55.55 && Global.prestige > 0 && !inDialogue && dialogue == -1:
 			Global.quantUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall7.disabled = false
 			loadDialogue("Hold on, i just got a call from dr.quant, 
@@ -109,7 +112,7 @@ func _process(delta: float) -> void:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall7/Label.text = "???"
 		
 	if !Global.scribUnlock:
-		if Global.active.size() >= 2 && Global.quantUnlock && !inDialogue:
+		if Global.active.size() >= 2 && Global.quantUnlock && !inDialogue && dialogue == -1:
 			Global.scribUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall8.disabled = false
 			loadDialogue("HELLO THERE! It has come to my attention that YOU
@@ -118,12 +121,21 @@ func _process(delta: float) -> void:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall8/Label.text = "???"
 		
 	if !Global.spookUnlock:
-		if Global.prestige >= 1 && Global.ballCost > 6666 && !inDialogue:
+		if Global.prestige >= 1 && Global.ballCost > 6666 && !inDialogue && dialogue == -1:
 			Global.spookUnlock = true
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall9.disabled = false
 			loadDialogue("Boo!", 220, 2)
 		else:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall9/Label.text = "???"
+		
+	if !Global.chiroUnlock:
+		if Global.prestige >= 1 && Global.totalCollisions > 100000 && !inDialogue && dialogue == -1:
+			Global.chiroUnlock = true
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall10.disabled = false
+			loadDialogue("Looks like the chiri r on da hunt!
+			They noticed uve reached 100000 total collisions!", 250, 2)
+		else:
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall10/Label.text = "???"
 	
 	# boon/shop artifacts
 	$VBoxContainer2/HBoxContainer/BoonBox/Label.size.x = $VBoxContainer2/HBoxContainer/BoonBox.size.x
@@ -312,3 +324,7 @@ func _on_dialogue_box_pressed() -> void:
 		221:
 			loadDialogue("Uve unlocked the spoOoo00o00oO0oOkus! 
 			A hi-plonk plonkus that leaves ghastly afterimages!", -2, 2)
+			
+		250:
+			loadDialogue("Say, they can help u plonk! Theyre great hunters!
+			They can detect nearby plonkus with their sharp hearing!", -2)

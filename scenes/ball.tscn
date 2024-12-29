@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://crdygc5xl36pf"]
+[gd_scene load_steps=119 format=3 uid="uid://crdygc5xl36pf"]
 
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="1_0kl4m"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_s3pyh"]
@@ -22,12 +22,21 @@
 [ext_resource type="Texture2D" uid="uid://d0vedwo2xn0w2" path="res://assets/face7a.png" id="11_1yri8"]
 [ext_resource type="Texture2D" uid="uid://cn6wb7i2u7ey7" path="res://assets/face6a.png" id="11_ishdp"]
 [ext_resource type="Texture2D" uid="uid://8fnyu8t67hfs" path="res://assets/face7b.png" id="12_c4egr"]
+[ext_resource type="Texture2D" uid="uid://cc4b77gdaqofu" path="res://assets/face43.png" id="17_lv770"]
+[ext_resource type="Texture2D" uid="uid://cx4oae0lnqeb3" path="res://assets/face43a.png" id="18_rdddv"]
+[ext_resource type="Texture2D" uid="uid://bjvet4xy1rrpl" path="res://assets/face42.png" id="19_dy3nw"]
 [ext_resource type="Texture2D" uid="uid://dhfvl7y743u11" path="res://assets/face8.png" id="19_jdee8"]
+[ext_resource type="Texture2D" uid="uid://mdewau4t2yt6" path="res://assets/face40.png" id="20_54i0n"]
 [ext_resource type="Texture2D" uid="uid://bkj5ipxfctqwm" path="res://assets/face8a.png" id="20_dmork"]
+[ext_resource type="Texture2D" uid="uid://ddb1q2o460w5e" path="res://assets/face40a.png" id="21_bc4uo"]
 [ext_resource type="Texture2D" uid="uid://cy7vbhhiotdjf" path="res://assets/face8b.png" id="21_itjud"]
+[ext_resource type="Texture2D" uid="uid://bnf7va2qf07ue" path="res://assets/face40b.png" id="22_pjnx1"]
 [ext_resource type="Texture2D" uid="uid://16hrq50oseck" path="res://assets/face11.png" id="23_uirsk"]
+[ext_resource type="Texture2D" uid="uid://b8jgj61rodsd6" path="res://assets/face41.png" id="23_xij1v"]
 [ext_resource type="Texture2D" uid="uid://dgdityl7th52o" path="res://assets/face11a.png" id="24_86e0l"]
+[ext_resource type="Texture2D" uid="uid://b0ytkq4dqlpmu" path="res://assets/face41a.png" id="24_w5qc4"]
 [ext_resource type="Texture2D" uid="uid://dcxgavngf6eb3" path="res://assets/face11b.png" id="25_k080w"]
+[ext_resource type="Texture2D" uid="uid://bxxxni6elghpk" path="res://assets/face41b.png" id="25_ym3xa"]
 [ext_resource type="Texture2D" uid="uid://ukci0q2alksh" path="res://assets/face12.png" id="26_nskgr"]
 [ext_resource type="Texture2D" uid="uid://dri344h0idk55" path="res://assets/face9.png" id="27_qpa22"]
 [ext_resource type="Texture2D" uid="uid://miquvg4uot8w" path="res://assets/face9a.png" id="28_edc30"]
@@ -178,6 +187,53 @@ animations = [{
 }],
 "loop": true,
 "name": &"0_slow",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_lv770")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_rdddv")
+}],
+"loop": true,
+"name": &"10_fast",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_dy3nw")
+}],
+"loop": true,
+"name": &"10_hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_54i0n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_bc4uo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_pjnx1")
+}],
+"loop": true,
+"name": &"10_mid",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_xij1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_w5qc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ym3xa")
+}],
+"loop": true,
+"name": &"10_slow",
 "speed": 2.0
 }, {
 "frames": [{
@@ -606,6 +662,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_7kms1"]
 radius = 50.0178
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ur48c"]
+radius = 380.222
+
 [node name="Ball" type="RigidBody2D"]
 mass = 0.001
 physics_material_override = SubResource("PhysicsMaterial_mtvmg")
@@ -635,7 +694,7 @@ disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i4oj2")
-animation = &"9_slow"
+animation = &"10_fast"
 
 [node name="Bounce1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("54_nmqxf")
@@ -660,6 +719,13 @@ shape = SubResource("CircleShape2D_7kms1")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[node name="Echolocate" type="Area2D" parent="."]
+
+[node name="EchoCollide" type="CollisionShape2D" parent="Echolocate"]
+shape = SubResource("CircleShape2D_ur48c")
+disabled = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="SW/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Echolocate" to="." method="_on_echolocate_body_entered"]

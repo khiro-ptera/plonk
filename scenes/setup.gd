@@ -25,6 +25,12 @@ func _ready() -> void:
 	# Global.prestige = 1
 	# Global.plonks = 20000
 	# Global.spookUnlock = true
+	spawnBall(10)
+	spawnBall(9)
+	spawnBall(10)
+	spawnBall(9)
+	spawnBall(10)
+	spawnBall(9)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -110,6 +116,7 @@ func spawnBall(type = 0, pos = Vector2(randi_range(125, 650), randi_range(125, 4
 vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, position, velocity
 	var instance = ball.instantiate()
 	add_child(instance)
+	instance.add_to_group("ball")
 	instance.type = type
 	addBall.emit(type)
 	instance.position = pos
@@ -129,6 +136,9 @@ vel = Vector2(100, 100).rotated(randf_range(-3.14, 3.14))) -> void: # type, posi
 		instance.scaler = Global.plonkiScale * 0.9
 	elif type == 6:
 		instance.scaler = Global.plonkiScale * 2.0
+	elif type == 10:
+		# instance.linear_damp = 0.05
+		pass
 
 func addBlock(pos) -> void:
 	var instance = block.instantiate()
@@ -156,38 +166,44 @@ func _on_add_ball_3_pressed() -> void:
 func _on_add_ball_4_pressed() -> void:
 	if Global.plonks >= Global.gravCost:
 		Global.plonks -= Global.gravCost
-		Global.gravCost *= 7
+		Global.gravCost *= 6
 		spawnBall(3)
 
 func _on_add_ball_5_pressed() -> void:
 	if Global.plonks >= Global.cometCost:
 		Global.plonks -= Global.cometCost
-		Global.cometCost *= 11
+		Global.cometCost *= 8
 		spawnBall(5)
 
 func _on_add_ball_6_pressed() -> void:
 	if Global.plonks >= Global.slothCost:
 		Global.plonks -= Global.slothCost
-		Global.slothCost *= 13
+		Global.slothCost *= 11
 		spawnBall(6)
 
 func _on_add_ball_7_pressed() -> void:
 	if Global.plonks >= Global.quantCost:
 		Global.plonks -= Global.quantCost
-		Global.quantCost *= randi_range(14, 16)
+		Global.quantCost *= randi_range(12, 15)
 		spawnBall(7)
 
 func _on_add_ball_8_pressed() -> void:
 	if Global.plonks >= Global.scribCost:
 		Global.plonks -= Global.scribCost
-		Global.scribCost *= 20
+		Global.scribCost *= 15
 		spawnBall(8)
 
 func _on_add_ball_9_pressed() -> void:
 	if Global.plonks >= Global.spookCost:
 		Global.plonks -= Global.spookCost
-		Global.spookCost *= 25
+		Global.spookCost *= 18
 		spawnBall(9)
+
+func _on_add_ball_10_pressed() -> void:
+	if Global.plonks >= Global.chiroCost:
+		Global.plonks -= Global.chiroCost
+		Global.chiroCost *= 21
+		spawnBall(10)
 
 func _on_prestige_pressed() -> void:
 	var boons = int(Global.plonks / 10000)
@@ -223,7 +239,7 @@ func _on_boon_deck_add_boon(b: Variant) -> void:
 				get_child(i).scaler *= 1.1
 			Global.plonkiScale *= 1.1
 		"Spincellerate":
-			Global.spin += 0.008
+			Global.spin += 0.001
 		"Plonky":
 			var instance = plonky.instantiate()
 			instance.position = Vector2(200, 200)

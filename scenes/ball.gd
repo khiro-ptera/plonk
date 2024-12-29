@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 var wave = preload("res://scenes/wave.tscn")
+var echo = preload("res://scenes/echo.tscn")
 
 @onready var scaler = Global.plonkiScale
 @onready var oscale = Vector2(1, 1)
@@ -9,6 +10,8 @@ var hitframes = 0
 var cd = INF
 var timed = INF
 var bonus = 0
+
+signal free(t)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -56,16 +59,32 @@ func _physics_process(delta: float) -> void:
 				linear_velocity = Vector2(250, 250).rotated(randf_range(-3.14, 3.14))
 		elif type == 6:
 			linear_damp = 0.2
-			bonus = randi_range(10, 30)
+			angular_damp = 0.1
+			bonus = randi_range(10, 12)
 		elif type == 7:
-			angular_damp = 2.5
+			angular_damp = 1.5
 		elif type == 9:
-			bonus = 10
+			bonus = 1
+		elif type == 10:
+			bonus = 6
+			angular_damp = 0.5
+	
+	if type == 10:
+		$Echolocate.show()
+		$Echolocate/EchoCollide.disabled = false
+	else:
+		$Echolocate.hide()
+		$Echolocate/EchoCollide.disabled = true
 	
 	if timed != INF:
 		timed -= delta
 		if timed <= 0.0:
+			free.emit(type)
 			queue_free()
+	if cd != INF:
+		cd -= delta
+		if cd <= 0.0:
+			cd = INF
 	
 	# angular_velocity += Global.spin/10
 	if abs(angular_velocity) > 0.05:
@@ -80,15 +99,17 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.play(str(type) + "_mid")
 	hitframes -= 1
 	
-func slowdown() -> void:
-	while abs(linear_velocity.x) + abs(linear_velocity.y) > 20:
+func slowdown(minV = 20, setZero = true) -> void:
+	while abs(linear_velocity.x) + abs(linear_velocity.y) > minV:
 		linear_velocity *= 0.85
 		await get_tree().create_timer(0.1).timeout
-	linear_velocity = Vector2(0, 0)
+	if setZero:
+		linear_velocity = Vector2(0, 0)
 	
 
 func _on_body_entered(body: Node) -> void:
 	if type == 4:
+		free.emit(type)
 		queue_free()
 		return
 	if Global.active.has("Shockwave"): # yeah this shockwave thing is bugged
@@ -109,26 +130,28 @@ func _on_body_entered(body: Node) -> void:
 	if type == 7: # quantus warp
 		Global.plonks += randi_range(-33, 66)
 		if randi_range(1, 7) == 1:
-			angular_velocity = randf_range(-2.0, 2.0)
+			angular_velocity = randf_range(-5.0, 5.0)
 			position = Vector2(randi_range(125, 650), randi_range(125, 450)) # please dont break the game...
 			$Warp1.play()
 	elif type == 8:
 		scaler += randf_range(-0.3, 0.3)
 		if scaler > 0.75:
-			scaler = 0.75
-		elif scaler < 0.05:
-			scaler = 0.05
+			scaler = 0.70
+		elif scaler < 0.1:
+			scaler = 0.15
 		Global.plonks += int(scaler * 100)
 	elif type == 9 && timed == INF:
 		if randi_range(1, 2) == 1:
 			linear_velocity = linear_velocity / 1.01
-			get_parent().spawnBall(9, position + Vector2(randf_range(-0.5, 0.5), randf_range(-0.5, 0.5)), linear_velocity)
+			get_parent().call_deferred("spawnBall", 9, position, linear_velocity)
+			# get_parent().spawnBall(9, position + Vector2(randf_range(-0.5, 0.5), randf_range(-0.5, 0.5)), linear_velocity)
 			modulate.a = 0.5
 			linear_damp += 0.3
 			timed = randf_range(1.0, 3.0)
 	Global.totalCollisions += 1
 	hitframes = 15
 	$AnimatedSprite2D.play(str(type) + "_hit")
+	# print(bonus)
 
 func shockwave() -> void:
 	$SW.show()
@@ -148,3 +171,23 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	linear_velocity = Vector2(0, 0)
 	position = Vector2(randi_range(125, 650), randi_range(125, 450))
+
+
+func _on_echolocate_body_entered(body: Node2D) -> void:
+	if body != $"." && body.is_in_group("ball") && cd == INF:
+		cd = 5.0
+		var tempV = linear_velocity
+		linear_velocity *= 0.8
+		linear_damp += 0.3
+		hitframes = 12
+		$AnimatedSprite2D.play(str(type) + "_hit")
+		for i in randi_range(5, 10):
+			var echoi = echo.instantiate()
+			call_deferred("add_child", echoi)
+		await get_tree().create_timer(0.2).timeout
+		linear_velocity = tempV * 1.11
+		linear_damp -= 0.3
+		if linear_damp < 0.01:
+			linear_damp = 0.0
+		var target = global_position.direction_to(body.position)
+		linear_velocity = target * linear_velocity.length()
