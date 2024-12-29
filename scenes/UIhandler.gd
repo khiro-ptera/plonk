@@ -20,6 +20,7 @@ func _ready() -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall6.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall7.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall8.disabled = true
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall9.disabled = true
 	$BoonSelection.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,6 +51,8 @@ func _process(delta: float) -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall7/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall7.size
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall8/Label.text = "Scriball " + str(Global.scribCost)
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall8/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall8.size
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall9/Label.text = "Spookus " + str(Global.spookCost)
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall9/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall9.size
 	
 	if shopPage == 1:
 		get_tree().call_group("shop1", "show")
@@ -113,6 +116,14 @@ func _process(delta: float) -> void:
 			have unlocked TWO whole boons!", 200, 12)
 		else:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall8/Label.text = "???"
+		
+	if !Global.spookUnlock:
+		if Global.prestige >= 1 && Global.ballCost > 6666 && !inDialogue:
+			Global.spookUnlock = true
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall9.disabled = false
+			loadDialogue("Boo!", 220, 2)
+		else:
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall9/Label.text = "???"
 	
 	# boon/shop artifacts
 	$VBoxContainer2/HBoxContainer/BoonBox/Label.size.x = $VBoxContainer2/HBoxContainer/BoonBox.size.x
@@ -295,3 +306,9 @@ func _on_dialogue_box_pressed() -> void:
 			Give it a try! I'll be off now!", 210, 12)
 		210:
 			loadDialogue("Goodbye! Ciao! 再见! Kwaheri! ;D o7!", -2, 12)
+			
+		220:
+			loadDialogue("Did i getcha?", 221)
+		221:
+			loadDialogue("Uve unlocked the spoOoo00o00oO0oOkus! 
+			A hi-plonk plonkus that leaves ghastly afterimages!", -2, 2)

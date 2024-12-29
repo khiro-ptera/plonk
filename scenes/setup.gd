@@ -23,7 +23,8 @@ func _ready() -> void:
 	# Test Zone!
 	# Global.boons = 10
 	# Global.prestige = 1
-	# Global.plonks = 10000
+	# Global.plonks = 20000
+	# Global.spookUnlock = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -181,6 +182,12 @@ func _on_add_ball_8_pressed() -> void:
 		Global.plonks -= Global.scribCost
 		Global.scribCost *= 20
 		spawnBall(8)
+
+func _on_add_ball_9_pressed() -> void:
+	if Global.plonks >= Global.spookCost:
+		Global.plonks -= Global.spookCost
+		Global.spookCost *= 25
+		spawnBall(9)
 
 func _on_prestige_pressed() -> void:
 	var boons = int(Global.plonks / 10000)

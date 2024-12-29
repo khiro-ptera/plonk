@@ -49,10 +49,6 @@ func _physics_process(delta: float) -> void:
 		
 		if type == 3:
 			constant_force.y = 0.1
-		elif type == 4:
-			timed -= delta
-			if timed <= 0.0:
-				queue_free()
 		elif type == 5:
 			if randi_range(1, 20000) < int(delta * 1000):
 				slowdown()
@@ -63,6 +59,13 @@ func _physics_process(delta: float) -> void:
 			bonus = randi_range(10, 30)
 		elif type == 7:
 			angular_damp = 2.5
+		elif type == 9:
+			bonus = 10
+	
+	if timed != INF:
+		timed -= delta
+		if timed <= 0.0:
+			queue_free()
 	
 	# angular_velocity += Global.spin/10
 	if abs(angular_velocity) > 0.05:
@@ -116,6 +119,13 @@ func _on_body_entered(body: Node) -> void:
 		elif scaler < 0.05:
 			scaler = 0.05
 		Global.plonks += int(scaler * 100)
+	elif type == 9 && timed == INF:
+		if randi_range(1, 2) == 1:
+			linear_velocity = linear_velocity / 1.01
+			get_parent().spawnBall(9, position + Vector2(randf_range(-0.5, 0.5), randf_range(-0.5, 0.5)), linear_velocity)
+			modulate.a = 0.5
+			linear_damp += 0.3
+			timed = randf_range(1.0, 3.0)
 	Global.totalCollisions += 1
 	hitframes = 15
 	$AnimatedSprite2D.play(str(type) + "_hit")

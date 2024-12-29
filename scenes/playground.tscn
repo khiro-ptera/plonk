@@ -360,6 +360,21 @@ label_settings = SubResource("LabelSettings_t6l4c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AddBall9" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop2"]]
+layout_mode = 2
+texture_normal = ExtResource("4_p3gc2")
+texture_pressed = ExtResource("5_dj83m")
+texture_disabled = ExtResource("11_ylka4")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall9"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 50.0
+label_settings = SubResource("LabelSettings_t6l4c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer3" type="MarginContainer" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
@@ -661,6 +676,12 @@ label_settings = ExtResource("14_r7ti2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Ball9" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
+layout_mode = 2
+label_settings = ExtResource("14_r7ti2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TotalC" type="Label" parent="StatsLayer/StatsMenu/HBoxContainer/Menu"]
 layout_mode = 2
 label_settings = ExtResource("14_r7ti2")
@@ -740,6 +761,7 @@ autoplay = true
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall8" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_8_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall2" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_2_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall9" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_9_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall3" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_3_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall4" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_4_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall5" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_5_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://crdygc5xl36pf"]
+[gd_scene load_steps=109 format=3 uid="uid://crdygc5xl36pf"]
 
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="1_0kl4m"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_s3pyh"]
@@ -92,6 +92,16 @@
 [ext_resource type="Texture2D" uid="uid://cvkvm02yu3yt" path="res://assets/face34.png" id="81_2x28x"]
 [ext_resource type="Texture2D" uid="uid://ssfc685d70s4" path="res://assets/face34a.png" id="82_5vmy0"]
 [ext_resource type="Texture2D" uid="uid://daky6xgkyc30p" path="res://assets/face34b.png" id="83_8ovgu"]
+[ext_resource type="Texture2D" uid="uid://ccfmbxknljnx" path="res://assets/face36.png" id="87_8umnn"]
+[ext_resource type="Texture2D" uid="uid://cnh3upfrdbvqd" path="res://assets/face36a.png" id="88_kmwxi"]
+[ext_resource type="Texture2D" uid="uid://crhvu70gui5e3" path="res://assets/face36b.png" id="89_586o3"]
+[ext_resource type="Texture2D" uid="uid://4ynphj6f0g13" path="res://assets/face38.png" id="90_8ra8y"]
+[ext_resource type="Texture2D" uid="uid://cej0n4pcyo5e2" path="res://assets/face37.png" id="91_3efn2"]
+[ext_resource type="Texture2D" uid="uid://cb1b3nu61rtx0" path="res://assets/face37a.png" id="92_tcg1b"]
+[ext_resource type="Texture2D" uid="uid://tvrtcwcyji80" path="res://assets/face37b.png" id="93_81lpn"]
+[ext_resource type="Texture2D" uid="uid://bte7al18ld3ty" path="res://assets/face39.png" id="94_i5hid"]
+[ext_resource type="Texture2D" uid="uid://yynedj6m3ped" path="res://assets/face39a.png" id="95_3g6kw"]
+[ext_resource type="Texture2D" uid="uid://bdvbmr5i37ufc" path="res://assets/face39b.png" id="96_1besf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mtvmg"]
 resource_local_to_scene = true
@@ -524,6 +534,56 @@ animations = [{
 "loop": true,
 "name": &"8_slow",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("87_8umnn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_kmwxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_586o3")
+}],
+"loop": true,
+"name": &"9_fast",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("90_8ra8y")
+}],
+"loop": true,
+"name": &"9_hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("91_3efn2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_tcg1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_81lpn")
+}],
+"loop": true,
+"name": &"9_mid",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("94_i5hid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_3g6kw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_1besf")
+}],
+"loop": true,
+"name": &"9_slow",
+"speed": 2.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0lhrj"]
@@ -575,7 +635,7 @@ disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i4oj2")
-animation = &"7_mid"
+animation = &"9_slow"
 
 [node name="Bounce1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("54_nmqxf")
