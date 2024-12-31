@@ -361,6 +361,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AddBall9" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop2"]]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")
@@ -395,6 +396,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AddBall10" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop2"]]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("4_p3gc2")
 texture_pressed = ExtResource("5_dj83m")

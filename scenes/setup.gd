@@ -25,12 +25,7 @@ func _ready() -> void:
 	# Global.prestige = 1
 	# Global.plonks = 20000
 	# Global.spookUnlock = true
-	spawnBall(10)
-	spawnBall(9)
-	spawnBall(10)
-	spawnBall(9)
-	spawnBall(10)
-	spawnBall(9)
+	# spawnBall(11)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -46,10 +41,8 @@ func _process(delta: float) -> void:
 	else:
 		if randi_range(1, eventChance) < int(delta * 1000): # chance per frame for an event after cd
 			var rtemp = randi_range(1, 3)
-			print(str(rtemp))
 			if rtemp == 1:
 				event.emit(1) 
-				print("hi")
 				for i in 10:
 					var instance = block.instantiate()
 					add_child(instance)
@@ -102,7 +95,6 @@ func genBox(w, h, startpos = Vector2(0, 0)) -> void:
 	instance.position += startpos
 
 func plonkMult(mult, time) -> void: 
-	print("mult by " + str(mult))
 	Global.plonkMult *= mult
 	await get_tree().create_timer(time).timeout
 	Global.plonkMult /= mult

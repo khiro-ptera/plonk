@@ -68,6 +68,9 @@ func _physics_process(delta: float) -> void:
 		elif type == 10:
 			bonus = 6
 			angular_damp = 0.5
+		elif type == 11:
+			bonus = 8
+			angular_damp = 0.5
 	
 	if type == 10:
 		$Echolocate.show()
@@ -75,6 +78,20 @@ func _physics_process(delta: float) -> void:
 	else:
 		$Echolocate.hide()
 		$Echolocate/EchoCollide.disabled = true
+	if type == 11:
+		if cd == INF:
+			$Whirlpool.modulate.a = 0.4
+			$Whirlpool.scale *= randf_range(1.3, 2.0)
+			$Whirlpool.show()
+			$Whirlpool/WPArea/CollisionShape2D.disabled = false
+			cd = randf_range(10.0, 12.0)
+		elif cd < 6.0:
+			$Whirlpool.scale = Vector2(1, 1)
+			$Whirlpool.hide()
+			$Whirlpool/WPArea/CollisionShape2D.disabled = true
+	else:
+		$Whirlpool.hide()
+		$Whirlpool/WPArea/CollisionShape2D.disabled = true
 	
 	if timed != INF:
 		timed -= delta
@@ -175,6 +192,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_echolocate_body_entered(body: Node2D) -> void:
 	if body != $"." && body.is_in_group("ball") && cd == INF:
+		var p = body.position
 		cd = 5.0
 		var tempV = linear_velocity
 		linear_velocity *= 0.8
@@ -184,10 +202,15 @@ func _on_echolocate_body_entered(body: Node2D) -> void:
 		for i in randi_range(5, 10):
 			var echoi = echo.instantiate()
 			call_deferred("add_child", echoi)
-		await get_tree().create_timer(0.2).timeout
-		linear_velocity = tempV * 1.11
+		await get_tree().create_timer(0.15).timeout
+		linear_velocity = tempV * 1.15
 		linear_damp -= 0.3
 		if linear_damp < 0.01:
 			linear_damp = 0.0
-		var target = global_position.direction_to(body.position)
+		var target = global_position.direction_to(p)
 		linear_velocity = target * linear_velocity.length()
+
+func _on_wp_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("ball"):
+		body.angular_velocity *= 5
+		body.linear_velocity = body.linear_velocity.rotated(randf_range(-3.14, 3.14)) * 1.05

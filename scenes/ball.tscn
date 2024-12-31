@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://crdygc5xl36pf"]
+[gd_scene load_steps=132 format=3 uid="uid://crdygc5xl36pf"]
 
 [ext_resource type="Texture2D" uid="uid://ddbngb1x4d21y" path="res://assets/ball1.png" id="1_0kl4m"]
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_s3pyh"]
@@ -38,17 +38,27 @@
 [ext_resource type="Texture2D" uid="uid://dcxgavngf6eb3" path="res://assets/face11b.png" id="25_k080w"]
 [ext_resource type="Texture2D" uid="uid://bxxxni6elghpk" path="res://assets/face41b.png" id="25_ym3xa"]
 [ext_resource type="Texture2D" uid="uid://ukci0q2alksh" path="res://assets/face12.png" id="26_nskgr"]
+[ext_resource type="Texture2D" uid="uid://dv7toc1qg0sw" path="res://assets/face45.png" id="26_tm56t"]
+[ext_resource type="Texture2D" uid="uid://coifm7hy2lnqe" path="res://assets/face45a.png" id="27_ic00c"]
 [ext_resource type="Texture2D" uid="uid://dri344h0idk55" path="res://assets/face9.png" id="27_qpa22"]
+[ext_resource type="Texture2D" uid="uid://uiy1dtpt6fa0" path="res://assets/face45b.png" id="28_6eum0"]
 [ext_resource type="Texture2D" uid="uid://miquvg4uot8w" path="res://assets/face9a.png" id="28_edc30"]
 [ext_resource type="Texture2D" uid="uid://cet467fsxbu4m" path="res://assets/face9b.png" id="29_2nj0f"]
+[ext_resource type="Texture2D" uid="uid://dyfx3br3hh8ll" path="res://assets/face47.png" id="29_om3bk"]
 [ext_resource type="Texture2D" uid="uid://l5re1gf3haex" path="res://assets/face10.png" id="30_0mbe2"]
+[ext_resource type="Texture2D" uid="uid://vkgtbnp6omfn" path="res://assets/face44.png" id="30_wdsql"]
+[ext_resource type="Texture2D" uid="uid://cmutvgrppqgik" path="res://assets/face44a.png" id="31_1gify"]
 [ext_resource type="Texture2D" uid="uid://b2eeiem14jixg" path="res://assets/face10a.png" id="31_gt722"]
+[ext_resource type="Texture2D" uid="uid://50tlteprmw6g" path="res://assets/face44b.png" id="32_grcyx"]
 [ext_resource type="Texture2D" uid="uid://bw2sq0le7xs2r" path="res://assets/face10b.png" id="32_srm4c"]
+[ext_resource type="Texture2D" uid="uid://dknmjb8rxwmgw" path="res://assets/face46.png" id="33_1iq0p"]
 [ext_resource type="Texture2D" uid="uid://dljhn1spmnsmb" path="res://assets/face15.png" id="33_waakg"]
 [ext_resource type="Texture2D" uid="uid://b6aqyyk67bp3m" path="res://assets/face17.png" id="33_xqc8e"]
 [ext_resource type="Texture2D" uid="uid://b765vdjy6ykq3" path="res://assets/face15a.png" id="34_mv3bp"]
+[ext_resource type="Texture2D" uid="uid://u37kdadfdgb4" path="res://assets/face46a.png" id="34_uterv"]
 [ext_resource type="Texture2D" uid="uid://seds45in6isy" path="res://assets/face17a.png" id="34_yc2qv"]
 [ext_resource type="Texture2D" uid="uid://dedybpfpyw1ec" path="res://assets/face17b.png" id="35_gsbc0"]
+[ext_resource type="Texture2D" uid="uid://b1xl8t3ixi8ar" path="res://assets/face46b.png" id="35_kjsdq"]
 [ext_resource type="Texture2D" uid="uid://clfhv48cq1rg7" path="res://assets/face15b.png" id="35_llcw7"]
 [ext_resource type="Texture2D" uid="uid://bth0elm3ls6i7" path="res://assets/face16.png" id="36_yq3aq"]
 [ext_resource type="Texture2D" uid="uid://dncf4iuxcvkm6" path="res://assets/face18.png" id="40_5jalx"]
@@ -111,6 +121,8 @@
 [ext_resource type="Texture2D" uid="uid://bte7al18ld3ty" path="res://assets/face39.png" id="94_i5hid"]
 [ext_resource type="Texture2D" uid="uid://yynedj6m3ped" path="res://assets/face39a.png" id="95_3g6kw"]
 [ext_resource type="Texture2D" uid="uid://bdvbmr5i37ufc" path="res://assets/face39b.png" id="96_1besf"]
+[ext_resource type="Texture2D" uid="uid://bugwf7jhe76dq" path="res://assets/whirl.png" id="122_5jddk"]
+[ext_resource type="Script" path="res://whirlpool.gd" id="123_phh21"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mtvmg"]
 resource_local_to_scene = true
@@ -234,6 +246,56 @@ animations = [{
 }],
 "loop": true,
 "name": &"10_slow",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_tm56t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ic00c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_6eum0")
+}],
+"loop": true,
+"name": &"11_fast",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_om3bk")
+}],
+"loop": true,
+"name": &"11_hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_wdsql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_1gify")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_grcyx")
+}],
+"loop": true,
+"name": &"11_mid",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_1iq0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_uterv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_kjsdq")
+}],
+"loop": true,
+"name": &"11_slow",
 "speed": 2.0
 }, {
 "frames": [{
@@ -665,6 +727,9 @@ radius = 50.0178
 [sub_resource type="CircleShape2D" id="CircleShape2D_ur48c"]
 radius = 380.222
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_m34ey"]
+radius = 124.169
+
 [node name="Ball" type="RigidBody2D"]
 mass = 0.001
 physics_material_override = SubResource("PhysicsMaterial_mtvmg")
@@ -694,7 +759,7 @@ disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i4oj2")
-animation = &"10_fast"
+animation = &"11_mid"
 
 [node name="Bounce1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("54_nmqxf")
@@ -725,7 +790,22 @@ shape = SubResource("CircleShape2D_7kms1")
 shape = SubResource("CircleShape2D_ur48c")
 disabled = true
 
+[node name="Whirlpool" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("122_5jddk")
+script = ExtResource("123_phh21")
+
+[node name="Sprite2D" type="Sprite2D" parent="Whirlpool"]
+texture = ExtResource("122_5jddk")
+
+[node name="WPArea" type="Area2D" parent="Whirlpool"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Whirlpool/WPArea"]
+shape = SubResource("CircleShape2D_m34ey")
+disabled = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="SW/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="Echolocate" to="." method="_on_echolocate_body_entered"]
+[connection signal="body_entered" from="Whirlpool/WPArea" to="." method="_on_wp_area_body_entered"]
