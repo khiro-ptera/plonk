@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://wkodf4v7lfy8"]
+[gd_scene load_steps=60 format=3 uid="uid://wkodf4v7lfy8"]
 
 [ext_resource type="Script" path="res://scenes/setup.gd" id="1_i7nya"]
 [ext_resource type="Script" path="res://scenes/background.gd" id="1_jgpkw"]
@@ -44,6 +44,12 @@
 [ext_resource type="Script" path="res://scenes/audio_handler.gd" id="30_ogrux"]
 [ext_resource type="AudioStream" uid="uid://dbk4fhygt0umk" path="res://assets/test1_1.wav" id="31_2awm3"]
 [ext_resource type="Texture2D" uid="uid://bbq78kjpjhld8" path="res://assets/face29b.png" id="31_d3upq"]
+[ext_resource type="Texture2D" uid="uid://dv7toc1qg0sw" path="res://assets/face45.png" id="36_j1fax"]
+[ext_resource type="Texture2D" uid="uid://coifm7hy2lnqe" path="res://assets/face45a.png" id="38_o1boh"]
+[ext_resource type="Texture2D" uid="uid://uiy1dtpt6fa0" path="res://assets/face45b.png" id="39_2ite2"]
+[ext_resource type="Texture2D" uid="uid://vkgtbnp6omfn" path="res://assets/face44.png" id="40_chvjp"]
+[ext_resource type="Texture2D" uid="uid://cmutvgrppqgik" path="res://assets/face44a.png" id="41_5o273"]
+[ext_resource type="Texture2D" uid="uid://50tlteprmw6g" path="res://assets/face44b.png" id="42_ufriq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nfiy4"]
 font_size = 32
@@ -155,6 +161,34 @@ animations = [{
 }],
 "loop": true,
 "name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_j1fax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_o1boh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_2ite2")
+}],
+"loop": true,
+"name": &"20",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("40_chvjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_5o273")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_ufriq")
+}],
+"loop": true,
+"name": &"21",
 "speed": 5.0
 }, {
 "frames": [{
@@ -430,6 +464,21 @@ label_settings = SubResource("LabelSettings_t6l4c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AddBall11" type="TextureButton" parent="Main/VBoxContainer2/HBoxContainer/ShopBox" groups=["shop2"]]
+layout_mode = 2
+texture_normal = ExtResource("4_p3gc2")
+texture_pressed = ExtResource("5_dj83m")
+texture_disabled = ExtResource("11_ylka4")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall11"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 50.0
+label_settings = SubResource("LabelSettings_t6l4c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MarginContainer6" type="MarginContainer" parent="Main/VBoxContainer2/HBoxContainer/ShopBox"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
@@ -603,7 +652,7 @@ centered = false
 
 [node name="DialogueChar" type="AnimatedSprite2D" parent="Main/DialogueBox/Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_otspk")
-animation = &"0"
+animation = &"20"
 centered = false
 
 [node name="StatsLayer" type="CanvasLayer" parent="."]
@@ -788,6 +837,7 @@ autoplay = true
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall3" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_3_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall10" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_10_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall4" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_4_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall11" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_11_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall5" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_5_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall6" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_6_pressed"]
 [connection signal="pressed" from="Main/VBoxContainer2/HBoxContainer/ShopBox/AddBall7" to="Main/VBoxContainer2/HBoxContainer/ObjBox/Objects" method="_on_add_ball_7_pressed"]

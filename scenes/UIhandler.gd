@@ -22,6 +22,7 @@ func _ready() -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall8.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall9.disabled = true
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall10.disabled = true
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall11.disabled = true
 	$BoonSelection.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,6 +57,8 @@ func _process(delta: float) -> void:
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall9/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall9.size
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall10/Label.text = "Chirus " + str(Global.chiroCost)
 	$VBoxContainer2/HBoxContainer/ShopBox/AddBall10/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall10.size
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall11/Label.text = "Wharbler " + str(Global.wharbCost)
+	$VBoxContainer2/HBoxContainer/ShopBox/AddBall11/Label.size = $VBoxContainer2/HBoxContainer/ShopBox/AddBall11.size
 	
 	if shopPage == 1:
 		get_tree().call_group("shop1", "show")
@@ -136,6 +139,14 @@ func _process(delta: float) -> void:
 			They noticed uve reached 100000 total collisions!", 250, 2)
 		else:
 			$VBoxContainer2/HBoxContainer/ShopBox/AddBall10/Label.text = "???"
+	
+	if !Global.wharbUnlock:
+		if Global.prestige >= 2 && Global.plonks > 100 && !inDialogue && dialogue == -1:
+			Global.wharbUnlock = true
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall11.disabled = false
+			loadDialogue("WHOOOOOHOOOO!!", 300, 20)
+		else:
+			$VBoxContainer2/HBoxContainer/ShopBox/AddBall11/Label.text = "???"
 	
 	# boon/shop artifacts
 	$VBoxContainer2/HBoxContainer/BoonBox/Label.size.x = $VBoxContainer2/HBoxContainer/BoonBox.size.x
@@ -328,3 +339,21 @@ func _on_dialogue_box_pressed() -> void:
 		250:
 			loadDialogue("Say, they can help u plonk! Theyre great hunters!
 			They can detect nearby plonkus with their sharp hearing!", -2)
+			
+		300:
+			loadDialogue("This CLONING machine is SICK AF!", 301, 20)
+		301:
+			loadDialogue("HEY! What do you think y- 
+			Come back here with my CLONEMAJICK8000!", 302, 11)
+		302:
+			loadDialogue("No SHOT, old man! I'm takin' over the WORLD!", 303, 20)
+		303:
+			loadDialogue("Hey, you there! I'll let you use my AWESOME clones!", 304, 20)
+		304:
+			loadDialogue("...For a price, or course!", 305, 21)
+		305:
+			loadDialogue("What? Don't humor him! Hey, where are you going?", 306, 11)
+		306:
+			loadDialogue("Later, old man!", 307, 20)
+		307:
+			loadDialogue("Oh, you RASCAL! I'm coming for you!", -2, 11)

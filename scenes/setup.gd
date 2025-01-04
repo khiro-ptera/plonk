@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 	# Test Zone!
 	# Global.boons = 10
-	# Global.prestige = 1
+	# Global.prestige = 2
 	# Global.plonks = 20000
 	# Global.spookUnlock = true
 	# spawnBall(11)
@@ -196,6 +196,12 @@ func _on_add_ball_10_pressed() -> void:
 		Global.plonks -= Global.chiroCost
 		Global.chiroCost *= 21
 		spawnBall(10)
+
+func _on_add_ball_11_pressed() -> void:
+	if Global.plonks >= Global.wharbCost:
+		Global.plonks -= Global.wharbCost
+		Global.wharbCost *= 21
+		spawnBall(11)
 
 func _on_prestige_pressed() -> void:
 	var boons = int(Global.plonks / 10000)
